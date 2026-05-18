@@ -16,7 +16,7 @@
     "chart.js": "^4.5.0",
     "csv-parser": "^3.2.0",
     "gray-matter": "^4.0.3",
-    "next": "15.5.3",
+    "next": "15.5.9",
     "next-mdx-remote": "^5.0.0",
     "papaparse": "^5.5.3",
     "react": "19.1.0",
