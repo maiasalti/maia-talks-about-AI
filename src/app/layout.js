@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Data by Maia",
+  title: "Maia Talks About AI",
   description: "A blog where I share data stories, analysis, and visuals",
 };
 
@@ -42,18 +42,21 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* Header with small logo */}
+        {/* Header with small logo and wordmark */}
         <header className="bg-black border-b border-gray-600">
           <div className="px-6 py-3">
-            <Link href="/" className="inline-block">
+            <Link href="/" className="inline-flex items-center gap-3">
               <Image
-                src="/data-by-maia-logo.png"
-                alt="Data by Maia"
-                width={120}
+                src="/maia-talks-about-logo.png"
+                alt="Maia Talks About AI"
+                width={48}
                 height={48}
                 priority
-                className="h-10 w-auto"
+                className="h-10 w-10"
               />
+              <span className="text-white text-lg font-semibold tracking-tight">
+                Maia Talks About AI
+              </span>
             </Link>
           </div>
         </header>

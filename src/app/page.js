@@ -14,16 +14,19 @@ export default function HomePage() {
   const posts = getSortedPostsData();
   return (
     <main className="max-w-5xl mx-auto p-6">
-      {/* Large logo replacing the title */}
+      {/* Large logo and wordmark */}
       <div className="text-center mb-6">
         <Image
-          src="/data-by-maia-logo.png"
-          alt="Data by Maia"
-          width={500}
+          src="/maia-talks-about-logo.png"
+          alt="Maia Talks About AI"
+          width={200}
           height={200}
           priority
-          className="h-40 w-auto mx-auto mb-6"
+          className="h-40 w-40 mx-auto mb-4"
         />
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+          Maia Talks About AI
+        </h1>
       </div>
       
       <p className={`${lato.className} text-lg mb-10 text-center`}>

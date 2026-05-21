@@ -11,7 +11,7 @@ export default function PrivacyPolicy() {
 
         <section>
           <h2 className="text-2xl font-semibold mt-8 mb-4">Introduction</h2>
-          <p>This Privacy Policy describes how Data by Maia (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) collects, uses, and protects your personal information when you visit our website at databymaia.com (the &quot;Site&quot;).</p>
+          <p>This Privacy Policy describes how Maia Talks About AI (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) collects, uses, and protects your personal information when you visit our website at maiatalksabout.ai (the &quot;Site&quot;).</p>
         </section>
 
         <section>
@@ -130,7 +130,7 @@ export default function PrivacyPolicy() {
           <p>If you have any questions about this Privacy Policy or our privacy practices, please contact us at:</p>
           <div className="mt-4">
             <p><strong>Email:</strong> <a href="mailto:maia.salti@gmail.com" className="text-blue-600 hover:underline">maia.salti@gmail.com</a></p>
-            <p><strong>Website:</strong> databymaia.com</p>
+            <p><strong>Website:</strong> maiatalksabout.ai</p>
           </div>
         </section>
 
