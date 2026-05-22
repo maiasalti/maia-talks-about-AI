@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {/* Header with small logo and wordmark */}
-        <header className="bg-black border-b border-gray-600">
+        <header className="bg-[#ede4d0] border-b border-black/10">
           <div className="px-6 py-3">
             <Link href="/" className="inline-flex items-center gap-3">
               <Image
@@ -54,7 +54,7 @@ export default function RootLayout({ children }) {
                 priority
                 className="h-10 w-10"
               />
-              <span className="text-white text-lg font-semibold tracking-tight">
+              <span className="font-mono text-black text-lg font-semibold tracking-tight">
                 Maia Talks About AI
               </span>
             </Link>
