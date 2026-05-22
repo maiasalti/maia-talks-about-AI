@@ -63,14 +63,14 @@ export default function RootLayout({ children }) {
         <main className="min-h-screen">
           {children}
         </main>
-        <footer className="bg-gray-800 text-white py-4 text-center">
+        <footer className="bg-[#d6cdb9] text-black py-4 text-center font-mono">
           <div className="max-w-6xl mx-auto px-4">
             <div className="space-x-4">
-              <Link href="/privacy-policy" className="text-gray-300 hover:text-white">
+              <Link href="/privacy-policy" className="text-black hover:text-black/60">
                 Privacy Policy
               </Link>
-              <span className="text-gray-500">|</span>
-              <a href="mailto:maia.salti@gmail.com" className="text-gray-300 hover:text-white">
+              <span className="text-black/50">|</span>
+              <a href="mailto:maia.salti@gmail.com" className="text-black hover:text-black/60">
                 Contact
               </a>
             </div>
