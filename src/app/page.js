@@ -27,7 +27,7 @@ export default function HomePage() {
         </div>
 
         <p className="text-lg mb-10 text-center text-black">
-          Welcome to my AI blog where I aim to explore the geopolitical implications, mathematical foundations, and technological implementations of AI.
+          Welcome to my AI blog where I aim to explore the geopolitical implications, mathematical foundations, and technological implementations of AI! I hope you enjoy.
         </p>
 
         <h2 className="text-2xl font-semibold mb-6 text-black">Latest Posts</h2>
