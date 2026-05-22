@@ -56,6 +56,11 @@ export default function HomePage() {
                 <p className="text-black">
                   {post.description || "Click to read more →"}
                 </p>
+                {post.archive && (
+                  <p className="mt-6 text-xs uppercase tracking-widest text-black/60 italic">
+                    Data Blog Archive
+                  </p>
+                )}
               </div>
             </Link>
           ))}
