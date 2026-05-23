@@ -36,6 +36,27 @@ export function OptionalMath({ children }) {
                 div.optional-math-body a {
                   color: #93c5fd !important;
                 }
+                div.optional-math-body p {
+                  margin-top: 1em !important;
+                  margin-bottom: 1em !important;
+                }
+                div.optional-math-body ul,
+                div.optional-math-body ol {
+                  margin-top: 1em !important;
+                  margin-bottom: 1em !important;
+                  padding-left: 1.5em !important;
+                }
+                div.optional-math-body li {
+                  margin-top: 0.25em !important;
+                  margin-bottom: 0.25em !important;
+                }
+                div.optional-math-body img {
+                  margin-top: 1.5em !important;
+                  margin-bottom: 1.5em !important;
+                }
+                div.optional-math-body > style + * {
+                  margin-top: 0 !important;
+                }
               `,
             }}
           />
