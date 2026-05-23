@@ -16,7 +16,7 @@
     "chart.js": "^4.5.0",
     "csv-parser": "^3.2.0",
     "gray-matter": "^4.0.3",
-    "next": "15.5.3",
+    "next": "15.5.18",
     "next-mdx-remote": "^6.0.0",
     "papaparse": "^5.5.3",
     "react": "19.1.0",
@@ -30,7 +30,7 @@
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
-    "eslint-config-next": "15.5.3",
+    "eslint-config-next": "15.5.18",
     "tailwindcss": "^4"
   }
 }
