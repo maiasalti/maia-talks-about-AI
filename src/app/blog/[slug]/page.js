@@ -6,6 +6,7 @@ import { ValenceComparisonChart, AudioFeaturesRadar, SeasonalTrendLine } from ".
 import { SentenceLengthComparison, SentimentAnalysis, ConnectorWordsAnalysis, PunctuationAnalysis } from "../../../components/AIModelCharts";
 import { TouchdownRateChart, InterceptionRateChart, FumbleRateChart, EPAChart, TurnoverRateChart } from "../../../components/SuperBowl49Chart";
 import { PriceOfWaitingCalculator, DoublingTable } from "../../../components/PriceOfWaiting";
+import { OptionalMath } from "../../../components/OptionalMath";
 
 const postsDirectory = path.join(process.cwd(), "src/posts");
 
@@ -66,7 +67,8 @@ export default async function PostPage({ params }) {
               EPAChart,
               TurnoverRateChart,
               PriceOfWaitingCalculator,
-              DoublingTable
+              DoublingTable,
+              OptionalMath
             }}
           />
         </div>
