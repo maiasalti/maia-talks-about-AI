@@ -1,5 +1,5 @@
 ---
-title: "LLMs and My Attempt At Explaining Them"
+title: "LLMs: An Attempt To Explain Them"
 date: "2026-05-23"
 image: "/images/blog-1/cover.png"
 description: "A non-technical guide to how Large Language Models actually work — tokens, embeddings, attention, and training. With optional math for the curious."
@@ -8,30 +8,35 @@ description: "A non-technical guide to how Large Language Models actually work �
 
 ![LLMs and My Attempt At Explaining Them](/images/blog-1/cover.png)
 
-The most ubiquitous use of the phrase "AI," tends to be when people refer to ChatGPT, Claude, or Gemini. But this does not describe all of AI. These are specifically LLMs (Large Language Models).
+Since I have rebranded my blog from "Data by Maia" to "Maia Talks About AI" I thought it only to be fair that I begin with the most widely known type of AI: LLMs. 
 
-How does an LLM actually work? I spent a while using an LLM to teach me how LLMs work (how meta) and here's my attempt to explain it as simply as I can. I also added in optional dropdowns for anyone who wants to read more about the math for each section.
+ChatGPT, Claude, Gemini, Grok, Llama, DeepSeek: these are all LLMs (Large Language Models).But how many of the 250 million daily active ChatGPT users know how an LLM actually works? 
+
+Well, I spent a while using an LLM to teach me how LLMs work (how meta) and here's my attempt to explain it as simply as I can. I also added in optional dropdowns for anyone who wants to read more about the math for each section.
+
+![Hey ChatGPT, how do you work? idk lol](/images/blog-1/idk-lol.png)
 
 ## #1 Tokenization
 
-An LLM doesn't look at words and sentences the same way that we do.
+Firstly, an LLM doesn't look at words and sentences the same way that we do.
 
 Before the model does anything, the text gets chopped up into chunks (not necessarily words) called **tokens**.
 
 ![Tokenization with IDs](/images/blog-1/tokenization-example.png)
-E.g. *"I like international pineapple on pizza"* → `[I] [like] [inter] [national] [pine] [apple] [on] [pizza]` → `[20] [435] [2341] [132] [487] [536] [32] [2847]`
 
 Each token gets converted to an ID (a unique number), meaning the sentence gets turned into a list of integers.
 
-The model starts by scanning a large pile of text, and learning which chunks show up often. The standard method, called **Byte Pair Encoding**, starts with individual characters (‘a’, ‘w’, ‘r’), then repeatedly finds the most frequent pair of characters and turns that group into a single new token. Pairs become groups of three/ four/ five and some stay in pairs, It does this tens of thousands of times.
+To create these tokens, the model starts by scanning a large pile of text, and learning which chunks show up often. 
+
+The standard method, called **Byte Pair Encoding**, starts with individual characters (‘a’, ‘w’, ‘r’), then repeatedly finds the most frequent pair of characters and turns that group into a single new token. Pairs become groups of three/ four/ five and some stay in pairs, It does this tens of thousands of times.
 
 ![BPE merging the word "lower"](/images/blog-1/tokenization-bpe.png)
 
 Frequent words keep getting promoted and eventually get their own single-token slot.
 
-For example, start with 'h'. As it scans through text, it notices 'he' comes up very frequently, so 'he' becomes a single token. Then as it keeps scanning, it finds that 'the' comes up frequently, so that becomes a single token. Whereas if you have a token like 'inter' and 'international' doesn't come up often enough in the text, 'inter' will stay as a single token and 'national' may become a separate token.
+For example, start with 'h'. As it scans through text, it notices 'he' comes up very frequently, so 'he' becomes a single token. Then as it keeps scanning, it finds that 'the' comes up frequently, so that becomes a single token. 
 
-Main takeaway: tokenization allows letters/words to be converted to values, and so calculations can then be performed on them.
+Whereas if you have a token like 'inter' and 'international' doesn't come up often enough in the text, 'inter' will stay as a single token and 'national' may become a separate token.
 
 ## #2 Embeddings
 
@@ -39,11 +44,11 @@ For simplicity of explaining embeddings, I’ll refer to ‘tokens’ as ‘word
 
 Now each word is given a set of coordinates that place it on a map (picture it kind of like a web of words on a graph). Words that have similar meaning, like King and Queen, would sit close together on this map.
 
-However, your typical graph (two-dimensional — horizontal x value, vertical y value) isn't sufficient for mapping words. There are many factors defining the "meaning" of a word. It's like trying to fit all the words in the dictionary into two different categories (e.g. positive and negative): it doesn't really describe the words very well to categorize them that way.
+![A simplified 2D embedding map](/images/blog-1/embedding-map.png)
+
+However, your typical graph (horizontal x-value, vertical y-value) isn't sufficient for mapping words. There are many factors defining the "meaning" of a word. It's like trying to fit all the words in the dictionary into two different categories (e.g. positive and negative): it doesn't really describe the words very well to categorize them that way.
 
 Real embedding coordinates can be **hundreds or thousands of dimensions** to account for the complexity of the English vocabulary and how it's used. (It really gives you a better appreciation of what our brains are capable of.) The higher dimensions allow for separation of the different semantic meanings and contexts.
-
-![A simplified 2D embedding map](/images/blog-1/embedding-map.png)
 
 That is essentially embedding. **It gives every token a list of numbers (a vector) that actually gives it meaning.** The model learns the position of each word during training.
 
@@ -97,9 +102,9 @@ The whole thing condensed into one formula:
 
 ## #4 Training
 
-All of the training is based on this premise: **predict the next word.**
+Training, which is essentially giving the model the "rules" so that it can spit out the right text, is based on this premise: **predict the next word.**
 
-Grab a section of the text, hide the next word, let the model guess. It will output a probability for every possible next token. It will then guess the word it has calculated with the highest probability and then compare it to the word that actually came next.
+We grab a section of the text, hide the next word, and then let the model guess. It will output a probability for every possible next token. It will then guess the word it has calculated with the highest probability and then compare it to the word that actually came next.
 
 It will then be rewarded if it's right and penalized if it's wrong. If it was *confidently* wrong it will be penalized more so than if it was only slightly confident (lower probability). This is called the **loss**: how wrong the model was.
 
