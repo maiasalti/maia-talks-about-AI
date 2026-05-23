@@ -17,7 +17,28 @@ export function OptionalMath({ children }) {
         </span>
       </button>
       {open && (
-        <div className="px-5 py-4 bg-black prose prose-invert max-w-none text-white border-t border-white/10">
+        <div className="optional-math-body px-5 py-4 bg-black prose prose-invert max-w-none text-white border-t border-white/10">
+          <style
+            dangerouslySetInnerHTML={{
+              __html: `
+                div.optional-math-body h1,
+                div.optional-math-body h2,
+                div.optional-math-body h3,
+                div.optional-math-body h4,
+                div.optional-math-body p,
+                div.optional-math-body ul,
+                div.optional-math-body ol,
+                div.optional-math-body li,
+                div.optional-math-body strong,
+                div.optional-math-body em {
+                  color: white !important;
+                }
+                div.optional-math-body a {
+                  color: #93c5fd !important;
+                }
+              `,
+            }}
+          />
           {children}
         </div>
       )}
