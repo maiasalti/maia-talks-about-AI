@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import "./globals.css";
 import Script from 'next/script'
+import { SubscribeForm } from '../components/SubscribeForm';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -63,8 +64,9 @@ export default function RootLayout({ children }) {
         <main className="min-h-screen">
           {children}
         </main>
-        <footer className="bg-[#d6cdb9] text-black py-4 text-center font-mono">
-          <div className="max-w-6xl mx-auto px-4">
+        <footer className="bg-[#d6cdb9] text-black py-8 text-center font-mono">
+          <div className="max-w-6xl mx-auto px-4 space-y-6">
+            <SubscribeForm variant="footer" />
             <div className="space-x-4">
               <Link href="/privacy-policy" className="text-black hover:text-black/60">
                 Privacy Policy

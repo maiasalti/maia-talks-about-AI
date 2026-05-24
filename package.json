@@ -24,7 +24,8 @@
     "react-dom": "19.1.0",
     "recharts": "^3.2.0",
     "remark": "^15.0.1",
-    "remark-html": "^16.0.1"
+    "remark-html": "^16.0.1",
+    "resend": "^6.12.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
