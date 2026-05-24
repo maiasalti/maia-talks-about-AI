@@ -9,6 +9,7 @@ import { PriceOfWaitingCalculator, DoublingTable } from "../../../components/Pri
 import { OptionalMath } from "../../../components/OptionalMath";
 import { AttentionExplorer } from "../../../components/AttentionExplorer";
 import LossExplorer from "../../../components/LossExplorer";
+import { EmbeddingMap } from "../../../components/EmbeddingMap";
 
 const postsDirectory = path.join(process.cwd(), "src/posts");
 
@@ -79,7 +80,8 @@ export default async function PostPage({ params }) {
                 DoublingTable,
                 OptionalMath,
                 AttentionExplorer,
-                LossExplorer
+                LossExplorer,
+                EmbeddingMap
               }}
             />
           </div>
