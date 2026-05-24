@@ -7,6 +7,7 @@ import { SentenceLengthComparison, SentimentAnalysis, ConnectorWordsAnalysis, Pu
 import { TouchdownRateChart, InterceptionRateChart, FumbleRateChart, EPAChart, TurnoverRateChart } from "../../../components/SuperBowl49Chart";
 import { PriceOfWaitingCalculator, DoublingTable } from "../../../components/PriceOfWaiting";
 import { OptionalMath } from "../../../components/OptionalMath";
+import { AttentionExplorer } from "../../../components/AttentionExplorer";
 
 const postsDirectory = path.join(process.cwd(), "src/posts");
 
@@ -75,7 +76,8 @@ export default async function PostPage({ params }) {
                 TurnoverRateChart,
                 PriceOfWaitingCalculator,
                 DoublingTable,
-                OptionalMath
+                OptionalMath,
+                AttentionExplorer
               }}
             />
           </div>
