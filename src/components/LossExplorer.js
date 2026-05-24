@@ -12,13 +12,15 @@ import {
   CartesianGrid,
   ResponsiveContainer,
   Customized,
+  useXAxis,
+  useYAxis,
 } from "recharts";
 
 // Cream-theme colors to match the rest of the article
 const C = {
   point: "#1f1d1a",
   line: "#1d4ed8",
-  error: "#b14a32",
+  error: "#dc2626",
   grid: "rgba(0,0,0,0.12)",
   axis: "rgba(0,0,0,0.55)",
 };
@@ -76,11 +78,12 @@ export default function LossExplorer() {
   else if (ratio < 3.5) status = "Getting there, but the line still misses a lot of points.";
   else status = "The line is far from the points — the loss is high.";
 
-  const PlotLayer = (props) => {
-    const { xAxisMap, yAxisMap } = props;
-    if (!xAxisMap || !yAxisMap) return null;
-    const xs = xAxisMap[Object.keys(xAxisMap)[0]].scale;
-    const ys = yAxisMap[Object.keys(yAxisMap)[0]].scale;
+  const PlotLayer = () => {
+    const xAxis = useXAxis(0);
+    const yAxis = useYAxis(0);
+    if (!xAxis?.scale || !yAxis?.scale) return null;
+    const xs = xAxis.scale;
+    const ys = yAxis.scale;
     const xr = xs.range();
     const yr = ys.range();
     const clipX = Math.min(xr[0], xr[1]);
