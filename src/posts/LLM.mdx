@@ -107,6 +107,10 @@ It will then be rewarded if it's right and penalized if it's wrong. If it was *c
 
 We then adjust every parameter, like adjusting a straight line on a graph so that it goes through as many points as possible, to minimize this loss using **gradient descent** (a topic I'll cover in another blog post).
 
+*Click around on this graph to explore how loss really works.*
+
+<LossExplorer />
+
 ## #5 Final Prediction
 
 The vector of the last word in the sentence is multiplied by a final weighted matrix, which then outputs a probability for each word in the vocabulary. That probability represents the chance of that word being the next correct word.
