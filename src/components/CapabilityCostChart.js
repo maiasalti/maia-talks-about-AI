@@ -11,7 +11,6 @@ import {
   Tooltip,
   ResponsiveContainer,
   LabelList,
-  Legend,
 } from "recharts";
 
 /*
@@ -86,6 +85,18 @@ const OPEN = [{ name: "Qwen3.6-27B", date: "2026-04", cost: 3.6, idx: 37 }];
 // Not on the v4.1 axis — plotted separately, clearly flagged.
 const GHOST = [{ name: "DeepSeek R1", date: "2025 launch", cost: 2.19, idx: 60 }];
 
+// ALL points merged into ONE series. Recharts ScatterChart shares a single
+// "active index" across multiple <Scatter> series, which made the shared
+// tooltip read the wrong series (payload[0] = first series) and show a
+// mismatched cost. One series → payload[0] is always the hovered point.
+// Each point carries its own color/shape so the visuals are unchanged.
+const DATA = [
+  ...WESTERN.map((d) => ({ ...d, group: "western", color: COLOR_WESTERN, shape: "circle" })),
+  ...DEEPSEEK.map((d) => ({ ...d, group: "deepseek", color: COLOR_DEEPSEEK, shape: "diamond" })),
+  ...OPEN.map((d) => ({ ...d, group: "open", color: COLOR_OPEN, shape: "triangle" })),
+  ...GHOST.map((d) => ({ ...d, group: "ghost", color: COLOR_GHOST, shape: "diamond", hollow: true })),
+];
+
 // Per-point label placement {dx, dy, anchor} — hand-tuned to stop the
 // right-side cluster (GPT-5.x, Claude, Gemini) from overlapping.
 const LABEL_POS = {
@@ -110,7 +121,7 @@ const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     const p = payload[0].payload;
     return (
-      <div style={{ background: "rgba(26,26,26,0.98)", padding: "12px", border: "2px solid #4A90E2", borderRadius: "8px" }}>
+      <div style={{ background: "rgba(26,26,26,0.98)", padding: "12px", border: `2px solid ${p.color || "#4A90E2"}`, borderRadius: "8px" }}>
         {/* div, not p — the page's .prose styles force p/strong/em to black !important */}
         <div style={{ margin: 0, fontWeight: "bold", color: "#ffffff" }}>{p.name}</div>
         <div style={{ margin: "4px 0", color: "#f0f0f0" }}>{p.date}</div>
@@ -134,6 +145,24 @@ const PointLabel = ({ x, y, value, index, data }) => {
   );
 };
 
+// Per-point marker: circle (US labs), diamond (DeepSeek), triangle (Qwen),
+// hollow diamond (R1, flagged). Driven by each datum's shape/color/hollow.
+const PointShape = ({ cx, cy, payload }) => {
+  if (cx == null || cy == null || !payload) return null;
+  const c = payload.color;
+  if (payload.shape === "diamond") {
+    const r = 7;
+    const d = `M ${cx} ${cy - r} L ${cx + r - 1} ${cy} L ${cx} ${cy + r} L ${cx - r + 1} ${cy} Z`;
+    return <path d={d} fill={payload.hollow ? "transparent" : c} stroke={c} strokeWidth={payload.hollow ? 2 : 0} />;
+  }
+  if (payload.shape === "triangle") {
+    const r = 7;
+    const d = `M ${cx} ${cy - r} L ${cx + r} ${cy + r - 1} L ${cx - r} ${cy + r - 1} Z`;
+    return <path d={d} fill={c} />;
+  }
+  return <circle cx={cx} cy={cy} r={6} fill={c} />;
+};
+
 export const CapabilityCostChart = () => {
   return (
     <div style={{ background: "#1a1a1a", padding: "30px", borderRadius: "12px", margin: "30px 0", boxShadow: "0 4px 6px rgba(0,0,0,0.3)" }}>
@@ -141,8 +170,22 @@ export const CapabilityCostChart = () => {
         {/* TODO: headline placeholder */}
         Capability vs. Cost: Where the Frontier Sits
       </h3>
-      <div style={{ color: "#f0f0f0", textAlign: "center", marginTop: 0, marginBottom: "20px", fontSize: "13px" }}>
+      <div style={{ color: "#f0f0f0", textAlign: "center", marginTop: 0, marginBottom: "16px", fontSize: "13px" }}>
         Output-token price (log scale) vs. Artificial Analysis Intelligence Index (v4.1). Researched 2026-06-16.
+      </div>
+
+      {/* Custom single-row legend (recharts' built-in legend wrapped onto two lines) */}
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap", gap: "20px", marginBottom: "16px", fontSize: 12 }}>
+        {[
+          { label: "DeepSeek", color: COLOR_DEEPSEEK },
+          { label: "Open-weight (Qwen)", color: COLOR_OPEN },
+          { label: "US frontier labs", color: COLOR_WESTERN },
+        ].map((item) => (
+          <span key={item.label} style={{ display: "inline-flex", alignItems: "center", gap: 6, color: item.color, whiteSpace: "nowrap" }}>
+            <span style={{ width: 11, height: 11, borderRadius: "50%", background: item.color, display: "inline-block" }} />
+            {item.label}
+          </span>
+        ))}
       </div>
 
       <ResponsiveContainer width="100%" height={460}>
@@ -166,28 +209,14 @@ export const CapabilityCostChart = () => {
             ticks={[20, 30, 40, 50, 60]}
             stroke="#999"
             tick={{ fontSize: 12, fill: "#999" }}
-            label={{ value: "AA Intelligence Index (v4.1)", angle: -90, position: "insideLeft", fill: "#999" }}
+            label={{ value: "AA Intelligence Index (v4.1)", angle: -90, position: "insideLeft", fill: "#999", style: { textAnchor: "middle" } }}
           />
           <ZAxis range={[120, 120]} />
           <Tooltip content={<CustomTooltip />} cursor={{ strokeDasharray: "3 3" }} />
-          {/* legend at the TOP so it never collides with the x-axis title */}
-          <Legend verticalAlign="top" align="center" wrapperStyle={{ fontSize: 12, color: "#ccc", paddingBottom: 14 }} />
 
-          <Scatter name="US frontier labs" data={WESTERN} fill={COLOR_WESTERN} isAnimationActive={false}>
-            <LabelList dataKey="name" content={(props) => <PointLabel {...props} data={WESTERN} />} />
-          </Scatter>
-
-          <Scatter name="DeepSeek" data={DEEPSEEK} fill={COLOR_DEEPSEEK} shape="diamond" isAnimationActive={false}>
-            <LabelList dataKey="name" content={(props) => <PointLabel {...props} data={DEEPSEEK} />} />
-          </Scatter>
-
-          <Scatter name="Open-weight (Qwen)" data={OPEN} fill={COLOR_OPEN} shape="triangle" isAnimationActive={false}>
-            <LabelList dataKey="name" content={(props) => <PointLabel {...props} data={OPEN} />} />
-          </Scatter>
-
-          {/* R1 launch — DIFFERENT index version, flagged */}
-          <Scatter name="R1 launch (older index — not comparable)" data={GHOST} fill="transparent" stroke={COLOR_GHOST} strokeWidth={2} shape="diamond" isAnimationActive={false}>
-            <LabelList dataKey="name" content={(props) => <PointLabel {...props} data={GHOST} />} />
+          {/* Single merged series — colors/shapes come from each datum */}
+          <Scatter data={DATA} shape={<PointShape />} isAnimationActive={false}>
+            <LabelList dataKey="name" content={(props) => <PointLabel {...props} data={DATA} />} />
           </Scatter>
         </ScatterChart>
       </ResponsiveContainer>
