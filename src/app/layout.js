@@ -4,6 +4,7 @@ import Image from 'next/image';
 import "./globals.css";
 import Script from 'next/script'
 import { SubscribeForm } from '../components/SubscribeForm';
+import ChatWidget from '../components/ChatWidget';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -78,6 +79,7 @@ export default function RootLayout({ children }) {
             </div>
           </div>
         </footer>
+        <ChatWidget />
       </body>
     </html>
   );

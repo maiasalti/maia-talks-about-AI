@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getSortedPostsData } from "@/lib/posts";
+import { SubscribeForm } from "@/components/SubscribeForm";
 
 export const dynamic = "force-static";
 
@@ -29,6 +30,10 @@ export default function HomePage() {
         <p className="text-lg mb-10 text-center text-black">
           Welcome to my AI blog where I aim to explore the geopolitical implications, mathematical foundations, and technological implementations of AI! I hope you enjoy.
         </p>
+
+        <div className="max-w-xl mx-auto mb-12">
+          <SubscribeForm variant="footer" />
+        </div>
 
         <h2 className="text-2xl font-semibold mb-6 text-black">Latest Posts</h2>
 

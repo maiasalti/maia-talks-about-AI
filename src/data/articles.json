@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "deepseek-scaling-law",
+    "title": "{{TITLE}}",
+    "url": "https://www.maiatalksabout.ai/blog/deepseek-scaling-law",
+    "description": "{{META_DESCRIPTION}}",
+    "tags": ["AI", "DeepSeek", "scaling laws", "compute", "data analysis"]
+  },
+  {
+    "slug": "the-price-of-waiting",
+    "title": "The Price of Waiting",
+    "url": "https://www.maiatalksabout.ai/blog/the-price-of-waiting",
+    "description": "How much is your future self paying for your present self's procrastination?",
+    "tags": ["data analysis", "investing", "behavioral", "finance"]
+  },
+  {
+    "slug": "LLM",
+    "title": "LLMs: An Attempt To Explain Them",
+    "url": "https://www.maiatalksabout.ai/blog/LLM",
+    "description": "A non-technical guide to how large language models work: tokens, embeddings, attention, and training. With optional math for the curious.",
+    "tags": ["AI", "LLMs", "technical", "beginner-friendly", "educational"]
+  },
+  {
+    "slug": "superbowl-49-play-analysis",
+    "title": "Super Bowl XLIX: The Math Behind the Interception",
+    "url": "https://www.maiatalksabout.ai/blog/superbowl-49-play-analysis",
+    "description": "Analyzing whether Pete Carroll's decision was the statistically correct one.",
+    "tags": ["data analysis", "sports", "statistics", "football"]
+  },
+  {
+    "slug": "ai-writing-styles",
+    "title": "Do AI Models Have Their Own Personalities?",
+    "url": "https://www.maiatalksabout.ai/blog/ai-writing-styles",
+    "description": "A linguistic analysis of how the big three AI models express themselves differently.",
+    "tags": ["AI", "linguistics", "data analysis", "language"]
+  },
+  {
+    "slug": "spotify-seasonal-music-analysis",
+    "title": "Stick Season: How the Weather Influences Our Music Taste",
+    "url": "https://www.maiatalksabout.ai/blog/spotify-seasonal-music-analysis",
+    "description": "Analyzing how weather shifts our Spotify listening habits.",
+    "tags": ["data analysis", "music", "culture", "Spotify"]
+  }
+]

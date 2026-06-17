@@ -10,6 +10,8 @@ import { OptionalMath } from "../../../components/OptionalMath";
 import { AttentionExplorer } from "../../../components/AttentionExplorer";
 import LossExplorer from "../../../components/LossExplorer";
 import { EmbeddingMap } from "../../../components/EmbeddingMap";
+import { ScalingLawChart } from "../../../components/ScalingLawChart";
+import { CapabilityCostChart } from "../../../components/CapabilityCostChart";
 import { SubscribeForm } from "../../../components/SubscribeForm";
 
 const postsDirectory = path.join(process.cwd(), "src/posts");
@@ -82,7 +84,9 @@ export default async function PostPage({ params }) {
                 OptionalMath,
                 AttentionExplorer,
                 LossExplorer,
-                EmbeddingMap
+                EmbeddingMap,
+                ScalingLawChart,
+                CapabilityCostChart
               }}
             />
           </div>
