@@ -1,12 +1,5 @@
 [
   {
-    "slug": "deepseek-scaling-law",
-    "title": "{{TITLE}}",
-    "url": "https://www.maiatalksabout.ai/blog/deepseek-scaling-law",
-    "description": "{{META_DESCRIPTION}}",
-    "tags": ["AI", "DeepSeek", "scaling laws", "compute", "data analysis"]
-  },
-  {
     "slug": "the-price-of-waiting",
     "title": "The Price of Waiting",
     "url": "https://www.maiatalksabout.ai/blog/the-price-of-waiting",
