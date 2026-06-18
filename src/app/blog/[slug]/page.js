@@ -11,6 +11,7 @@ import { AttentionExplorer } from "../../../components/AttentionExplorer";
 import LossExplorer from "../../../components/LossExplorer";
 import { EmbeddingMap } from "../../../components/EmbeddingMap";
 import { ScalingLawTrendChart } from "../../../components/ScalingLawTrendChart";
+import { ScalingCurveTable } from "../../../components/ScalingCurveTable";
 import { ScalingLawChart } from "../../../components/ScalingLawChart";
 import { CapabilityCostChart } from "../../../components/CapabilityCostChart";
 import { SubscribeForm } from "../../../components/SubscribeForm";
@@ -87,6 +88,7 @@ export default async function PostPage({ params }) {
                 LossExplorer,
                 EmbeddingMap,
                 ScalingLawTrendChart,
+                ScalingCurveTable,
                 ScalingLawChart,
                 CapabilityCostChart
               }}
