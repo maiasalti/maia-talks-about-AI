@@ -43,7 +43,7 @@ export default function HomePage() {
             <Link
               key={post.id}
               href={`/blog/${post.id}`}
-              style={{ backgroundColor: CARD_COLORS[i % CARD_COLORS.length] }}
+              style={{ backgroundColor: post.cardColor || CARD_COLORS[i % CARD_COLORS.length] }}
               className="block rounded-xl shadow-md transition hover:brightness-95 overflow-hidden"
             >
               {post.image && (

@@ -1,5 +1,12 @@
 [
   {
+    "slug": "deepseek-scaling-law",
+    "title": "The AI Scaling Law and DeepSeek",
+    "url": "https://www.maiatalksabout.ai/blog/deepseek-scaling-law",
+    "description": "Why DeepSeek's launch wiped $589B off NVIDIA, what a scaling law actually is, and how compute scarcity forced the efficiency that moved the AI frontier.",
+    "tags": ["AI", "DeepSeek", "scaling laws", "compute", "data analysis"]
+  },
+  {
     "slug": "the-price-of-waiting",
     "title": "The Price of Waiting",
     "url": "https://www.maiatalksabout.ai/blog/the-price-of-waiting",

@@ -10,6 +10,10 @@ import { OptionalMath } from "../../../components/OptionalMath";
 import { AttentionExplorer } from "../../../components/AttentionExplorer";
 import LossExplorer from "../../../components/LossExplorer";
 import { EmbeddingMap } from "../../../components/EmbeddingMap";
+import { ScalingLawTrendChart } from "../../../components/ScalingLawTrendChart";
+import { ScalingCurveTable } from "../../../components/ScalingCurveTable";
+import { ScalingLawChart } from "../../../components/ScalingLawChart";
+import { CapabilityCostChart } from "../../../components/CapabilityCostChart";
 import { SubscribeForm } from "../../../components/SubscribeForm";
 
 const postsDirectory = path.join(process.cwd(), "src/posts");
@@ -36,7 +40,7 @@ export default async function PostPage({ params }) {
                   font-weight: 700 !important;
                   color: black !important;
                   margin-top: 3rem !important;
-                  margin-bottom: 1.5rem !important;
+                  margin-bottom: 1rem !important;
                 }
                 .prose ul {
                   color: black !important;
@@ -82,7 +86,11 @@ export default async function PostPage({ params }) {
                 OptionalMath,
                 AttentionExplorer,
                 LossExplorer,
-                EmbeddingMap
+                EmbeddingMap,
+                ScalingLawTrendChart,
+                ScalingCurveTable,
+                ScalingLawChart,
+                CapabilityCostChart
               }}
             />
           </div>
