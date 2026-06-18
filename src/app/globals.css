@@ -43,3 +43,34 @@ body {
 p + ul {
   margin-top: 0;  /* remove extra spacing btwn subtitle and list */
 }
+
+/* Blog post (.prose) typography. Moved here from an inline <style> in
+   blog/[slug]/page.js — React 19 hoists <style> tags, which caused a
+   hydration mismatch. Same rules, just a proper home. */
+.prose h2 {
+  font-size: 1.875rem !important;
+  font-weight: 700 !important;
+  color: black !important;
+  margin-top: 3rem !important;
+  margin-bottom: 1rem !important;
+}
+.prose ul {
+  color: black !important;
+  list-style-type: disc !important;
+  margin-left: 1.5rem !important;
+}
+.prose li {
+  color: black !important;
+  margin-bottom: 0.5rem !important;
+}
+.prose ol {
+  color: black !important;
+  list-style-type: decimal !important;
+  margin-left: 1.5rem !important;
+}
+.prose p, .prose strong, .prose em {
+  color: black !important;
+}
+.prose a {
+  color: #1d4ed8 !important;
+}

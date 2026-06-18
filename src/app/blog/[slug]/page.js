@@ -32,39 +32,6 @@ export default async function PostPage({ params }) {
         <h1 className="font-mono text-4xl font-bold text-black mb-2">{data.title}</h1>
         <p className="text-black/60 text-lg mb-8">{data.date}</p>
         <article className="prose prose-lg max-w-none text-black">
-          <style
-            dangerouslySetInnerHTML={{
-              __html: `
-                .prose h2 {
-                  font-size: 1.875rem !important;
-                  font-weight: 700 !important;
-                  color: black !important;
-                  margin-top: 3rem !important;
-                  margin-bottom: 1rem !important;
-                }
-                .prose ul {
-                  color: black !important;
-                  list-style-type: disc !important;
-                  margin-left: 1.5rem !important;
-                }
-                .prose li {
-                  color: black !important;
-                  margin-bottom: 0.5rem !important;
-                }
-                .prose ol {
-                  color: black !important;
-                  list-style-type: decimal !important;
-                  margin-left: 1.5rem !important;
-                }
-                .prose p, .prose strong, .prose em {
-                  color: black !important;
-                }
-                .prose a {
-                  color: #1d4ed8 !important;
-                }
-              `,
-            }}
-          />
           <div className="space-y-8">
             <MDXRemote
               source={content}
