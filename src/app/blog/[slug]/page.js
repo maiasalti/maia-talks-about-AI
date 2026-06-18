@@ -40,7 +40,7 @@ export default async function PostPage({ params }) {
                   font-weight: 700 !important;
                   color: black !important;
                   margin-top: 3rem !important;
-                  margin-bottom: 1.5rem !important;
+                  margin-bottom: 1rem !important;
                 }
                 .prose ul {
                   color: black !important;
