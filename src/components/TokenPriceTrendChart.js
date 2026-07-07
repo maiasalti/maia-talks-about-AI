@@ -117,6 +117,17 @@ const SERIES = [
   { key: "deepseek", label: "DeepSeek", color: COLOR_DEEPSEEK, data: DEEPSEEK },
 ];
 
+// Recharts' Tooltip on a multi-Scatter chart returns the nearest point from
+// EVERY series at once, not just the one under the cursor — so a single
+// merged, named, colored series drives the dots + tooltip (same fix as
+// CapabilityCostChart), while each company's connecting LINE is drawn from a
+// separate, nameless (non-tooltip-eligible) Scatter underneath it.
+const LINES = SERIES.map((s) => ({
+  ...s,
+  lineData: s.data.map((d) => ({ t: d.t, price: d.price })),
+}));
+const MERGED_POINTS = SERIES.flatMap((s) => s.data.map((d) => ({ ...d, color: s.color })));
+
 const X_MIN = 2021.5;
 const X_MAX = 2026.6;
 const Y_MIN = 0.2;
@@ -131,7 +142,7 @@ const CustomTooltip = ({ active, payload }) => {
     if (!entry) return null;
     const p = entry.payload;
     return (
-      <div style={{ background: "rgba(26,26,26,0.98)", padding: "12px", border: `2px solid ${entry.color || "#4A90E2"}`, borderRadius: "8px" }}>
+      <div style={{ background: "rgba(26,26,26,0.98)", padding: "12px", border: `2px solid ${p.color || "#4A90E2"}`, borderRadius: "8px" }}>
         <div style={{ margin: 0, fontWeight: "bold", color: "#ffffff" }}>{p.name}</div>
         <div style={{ margin: "4px 0", color: "#f0f0f0" }}>{p.date}</div>
         <div style={{ margin: "4px 0", color: "#f0f0f0" }}>{fmtPrice(p.price)} / 1M output tokens</div>
@@ -139,6 +150,11 @@ const CustomTooltip = ({ active, payload }) => {
     );
   }
   return null;
+};
+
+const PointShape = ({ cx, cy, payload }) => {
+  if (cx == null || cy == null || !payload) return null;
+  return <circle cx={cx} cy={cy} r={5.5} fill={payload.color} stroke="#1a1a1a" strokeWidth={1} />;
 };
 
 export const TokenPriceTrendChart = () => {
@@ -187,16 +203,22 @@ export const TokenPriceTrendChart = () => {
           <ZAxis range={[70, 70]} />
           <Tooltip content={<CustomTooltip />} cursor={{ strokeDasharray: "3 3" }} />
 
-          {SERIES.map((s) => (
+          {/* Connecting lines only — nameless data, so Tooltip's payload.name
+              filter above skips these and only ever resolves to the merged
+              dot series below, i.e. whichever point is actually hovered. */}
+          {LINES.map((s) => (
             <Scatter
               key={s.key}
-              name={s.label}
-              data={s.data}
-              fill={s.color}
+              data={s.lineData}
               line={{ stroke: s.color, strokeWidth: 2 }}
+              shape={() => null}
+              legendType="none"
               isAnimationActive={false}
             />
           ))}
+
+          {/* Single merged series drives the dots + tooltip. */}
+          <Scatter data={MERGED_POINTS} shape={<PointShape />} isAnimationActive={false} />
         </ScatterChart>
       </ResponsiveContainer>
 
