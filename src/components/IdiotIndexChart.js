@@ -207,7 +207,7 @@ export const IdiotIndexChart = () => {
       </ResponsiveContainer>
 
       <div style={{ textAlign: "center", color: "#f0f0f0", marginTop: "16px", marginBottom: 0, fontSize: 13 }}>
-        Neither bound is more &quot;correct&quot; — the true idiot index for each model sits somewhere between its two bars. The ${COST_LOW.toFixed(2)}–${COST_HIGH.toFixed(2)} compute-cost range comes from NVIDIA/SemiAnalysis inference benchmarks (see Sources below). DeepSeek&apos;s own disclosed figure (~6x) falls inside its computed range here.
+        The ${COST_LOW.toFixed(2)}–${COST_HIGH.toFixed(2)} compute-cost range comes from NVIDIA/SemiAnalysis inference benchmarks (see Sources below). DeepSeek&apos;s own disclosed figure (~6x) falls inside its computed range here.
       </div>
     </div>
   );
