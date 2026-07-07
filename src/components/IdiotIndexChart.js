@@ -90,11 +90,23 @@ const CustomTooltip = ({ active, payload }) => {
   return null;
 };
 
-const TopLabel = ({ x, y, width, value }) => (
-  <text x={x + width / 2} y={y - 8} fill="#d4d4d4" fontSize={12} textAnchor="middle">
-    {fmtIndex(value)}
-  </text>
-);
+// Small dark backing rect behind the label so the reference line (drawn on
+// top of the bars) doesn't visibly slice through a bar's value text when
+// that bar's height happens to sit close to the 10x line (V4 Pro's does).
+const TopLabel = ({ x, y, width, value }) => {
+  const label = fmtIndex(value);
+  const cx = x + width / 2;
+  const cy = y - 8;
+  const boxWidth = label.length * 7.5 + 6;
+  return (
+    <g>
+      <rect x={cx - boxWidth / 2} y={cy - 12} width={boxWidth} height={16} fill="#1a1a1a" />
+      <text x={cx} y={cy} fill="#d4d4d4" fontSize={12} textAnchor="middle">
+        {label}
+      </text>
+    </g>
+  );
+};
 
 export const IdiotIndexChart = () => {
   return (
@@ -116,7 +128,7 @@ export const IdiotIndexChart = () => {
       </div>
 
       <ResponsiveContainer width="100%" height={400}>
-        <BarChart data={DATA} margin={{ top: 30, right: 30, bottom: 10, left: 10 }}>
+        <BarChart data={DATA} margin={{ top: 30, right: 175, bottom: 10, left: 10 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#333" vertical={false} />
           <XAxis dataKey="name" stroke="#999" tick={{ fontSize: 12, fill: "#ccc" }} />
           <YAxis
@@ -127,18 +139,30 @@ export const IdiotIndexChart = () => {
           />
           <Tooltip content={<CustomTooltip />} cursor={{ fill: "rgba(255,255,255,0.05)" }} />
 
+          {/* Layering (JSX order = z-order, later = on top):
+              1. Visible colored bars, no labels — drawn first, underneath.
+              2. ReferenceLine — drawn over the bar fills, so the dashed line
+                 reads clearly across every bar instead of hiding behind them.
+              3. A second, invisible bar bound to the same data, whose only
+                 job is to carry the value labels (with a small backing rect)
+                 — drawn last, so text always sits on top of the line even
+                 where a bar's height (V4 Pro's ~3x) sits close to the 10x
+                 line. */}
+          <Bar dataKey="indexValue" isAnimationActive={false}>
+            {DATA.map((d) => (
+              <Cell key={d.name} fill={d.color} />
+            ))}
+          </Bar>
+
           <ReferenceLine
             y={10}
             stroke={COLOR_THRESHOLD}
             strokeDasharray="6 4"
             strokeWidth={2}
-            label={{ value: "illustrative 10x threshold", position: "insideTopRight", fill: COLOR_THRESHOLD, fontSize: 12 }}
+            label={{ value: "illustrative 10x threshold", position: "right", fill: COLOR_THRESHOLD, fontSize: 12 }}
           />
 
-          <Bar dataKey="indexValue" isAnimationActive={false}>
-            {DATA.map((d) => (
-              <Cell key={d.name} fill={d.color} />
-            ))}
+          <Bar dataKey="indexValue" shape={() => null} legendType="none" isAnimationActive={false}>
             <LabelList dataKey="indexValue" content={<TopLabel />} />
           </Bar>
         </BarChart>
