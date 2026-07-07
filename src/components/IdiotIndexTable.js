@@ -32,7 +32,7 @@ export const IdiotIndexTable = () => {
   return (
     <div style={{ background: "#1a1a1a", padding: "30px", borderRadius: "12px", margin: "30px 0", boxShadow: "0 4px 6px rgba(0,0,0,0.3)" }}>
       <h3 style={{ color: "white", textAlign: "center", marginTop: 0, marginBottom: "6px", fontSize: "20px" }}>
-        The Idiot Index, Today — By the Numbers
+        The Idiot Index, Today
       </h3>
       <div style={{ color: "#f0f0f0", textAlign: "center", marginTop: 0, marginBottom: "20px", fontSize: "13px" }}>
         Same five models as the chart below. Compute cost is one shared plausible range (${COST_LOW.toFixed(2)}–${COST_HIGH.toFixed(2)}/1M), not per-model.
@@ -66,7 +66,7 @@ export const IdiotIndexTable = () => {
       </div>
 
       <div style={{ textAlign: "center", color: "#f0f0f0", marginTop: "16px", marginBottom: 0, fontSize: 13 }}>
-        Lower bound assumes compute costs the most (${COST_HIGH.toFixed(2)}/1M); upper bound assumes it costs the least (${COST_LOW.toFixed(2)}/1M). Green = under the illustrative 10x threshold, red = over it. See Sources below for where that range comes from.
+        Green = under the illustrative 10x threshold, red = over it. See Sources below for where that range comes from.
       </div>
     </div>
   );

@@ -161,7 +161,7 @@ export const TokenPriceTrendChart = () => {
   return (
     <div style={{ background: "#1a1a1a", padding: "30px", borderRadius: "12px", margin: "30px 0", boxShadow: "0 4px 6px rgba(0,0,0,0.3)" }}>
       <h3 style={{ color: "white", textAlign: "center", marginTop: 0, marginBottom: "6px", fontSize: "20px" }}>
-        Flagship-Tier Price Over Time: Not a Straight Line Down
+        Flagship-Tier Token Price Over Time
       </h3>
       <div style={{ color: "#f0f0f0", textAlign: "center", marginTop: 0, marginBottom: "16px", fontSize: "13px" }}>
         Each company&apos;s most expensive currently-offered model, $/1M output tokens (log scale). Researched 2026-07-07.
