@@ -223,7 +223,7 @@ export const TokenPriceTrendChart = () => {
       </ResponsiveContainer>
 
       <div style={{ textAlign: "center", color: "#f0f0f0", marginTop: "16px", marginBottom: 0, fontSize: 13 }}>
-        Every zigzag up is a new premium tier launching (reasoning models, new flagship brands) resetting the frontier price higher, even as older tiers kept getting cheaper alongside it. See /research-notes for per-point sources.
+        Every zigzag up is a new premium tier launching (reasoning models, new flagship brands) resetting the frontier price higher, even as older tiers kept getting cheaper alongside it. Every price point is sourced from official pricing pages; see Sources below.
       </div>
     </div>
   );

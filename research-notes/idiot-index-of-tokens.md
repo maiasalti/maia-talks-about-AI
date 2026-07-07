@@ -368,32 +368,47 @@ point; annotate the big cut events (Gemini 1.5 Pro/Flash Oct/Aug 2024, Claude Op
 4.1→4.5 Nov 2025 −67%, DeepSeek V3.2-Exp Sep 2025, DeepSeek V4-Pro permanent discount
 May 2026).
 
-### Chart 2 — Current top-tier Idiot Index comparison (SHIPPED — bar chart)
-Bar chart, one bar per current flagship: Y = Idiot Index (price ÷ a single shared
-reference compute cost), linear scale. Red dashed ReferenceLine at y=10, labeled
-"illustrative 10x threshold" (explicitly caveated in both the chart and the prose as
-NOT a verified Musk quote — see item 2 below).
+### Chart 2 — Current top-tier Idiot Index comparison (SHIPPED — paired-bar chart, log scale)
+Two bars per current flagship, not one: a lighter bar for the LOWER bound of the idiot
+index and a solid bar for the UPPER bound, both on a shared log-scale Y axis (linear
+was abandoned once the two-bound approach made the range span ~0.2x to ~2,500x — far
+too wide for linear bars to show both usefully). Red dashed ReferenceLine at y=10,
+labeled "illustrative 10x threshold" (explicitly caveated in both the chart and the
+prose as NOT a verified Musk quote — see item 2 below), drawn AFTER the bars in JSX
+order so the line renders on top of the bar fills instead of hiding behind them; value
+labels render on a separate invisible-bar layer drawn after the line, each with a small
+dark backing rect, so the line never visibly slices through label text.
 
-Reference compute cost used = **geometric mean of the $0.02–$4.20/M band = ~$0.29/M**.
-Chosen specifically because collapsing the band to a single bar-chart denominator
-requires ONE number, and the geometric mean is a defensible, symmetric-in-log-space
-choice rather than picking either extreme. Documented in the component's code comment
-and in the article prose as one reasonable choice, not the only one — the ORDERING
-across companies is far less sensitive to this choice than the absolute bar heights.
+Superseded the earlier single-geometric-mean-anchor version: instead of collapsing the
+$0.02–$4.20/M band to one denominator, each model's idiot index is computed at BOTH
+ends of the band:
+- `lowerBound = price / $4.20` (cost assumed at its HIGHEST plausible value → smallest,
+  most charitable ratio)
+- `upperBound = price / $0.02` (cost assumed at its LOWEST plausible value → largest,
+  least charitable ratio)
+
+Neither bound is "more correct" — stated explicitly in the article prose. This is a
+more honest representation of the genuine ~2-order-of-magnitude uncertainty documented
+in Section B than a single point estimate was.
 
 Points shipped (2026-07-07 prices):
-| Model | Company | Price $/1M out | Idiot Index (÷ $0.29) |
-|---|---|---|---|
-| GPT-5.5 | OpenAI | $30.00 | ~104x |
-| Opus 4.8 | Anthropic | $25.00 | ~86x |
-| Fable 5 | Anthropic | $50.00 | ~173x |
-| Gemini 3.1 Pro Preview | Google | $12.00 | ~41x |
-| V4 Pro | DeepSeek | $0.87 | ~3x |
+| Model | Company | Price $/1M out | Lower bound (÷ $4.20) | Upper bound (÷ $0.02) |
+|---|---|---|---|---|
+| GPT-5.5 | OpenAI | $30.00 | ~7.1x | ~1,500x |
+| Opus 4.8 | Anthropic | $25.00 | ~6.0x | ~1,250x |
+| Fable 5 | Anthropic | $50.00 | ~12x | ~2,500x |
+| Gemini 3.1 Pro Preview | Google | $12.00 | ~2.9x | ~600x |
+| V4 Pro | DeepSeek | $0.87 | ~0.2x | ~44x |
 
-DeepSeek is the only bar under the illustrative 10x line. Its own 2025 disclosure
-implies a real-world ratio of ~6.45x for its own infra (Section B) — noticeably higher
-than the ~3x this shared-anchor math produces for it, and the article prose states
-that discrepancy explicitly as a cross-check rather than smoothing over it.
+Notable finding this range approach surfaced that the single-anchor version obscured:
+under the charitable (lower) bound, GPT-5.5, Opus 4.8, and Gemini 3.1 Pro Preview all
+fall UNDER the illustrative 10x line — only Fable 5 clears it. Under the uncharitable
+(upper) bound, all five clear it, including DeepSeek (~44x). DeepSeek is the only model
+whose lower bound stays under 1x. Its own 2025 disclosure implies a real-world ratio of
+~6.45x for its own infra (Section B) — which lands comfortably INSIDE this component's
+computed [0.2x, 44x] range for them, a cleaner cross-check than the prior single-anchor
+version produced (that version's ~3x point estimate sat below DeepSeek's own number;
+the range approach doesn't have that problem since 6.45x is simply inside the range).
 
 ---
 

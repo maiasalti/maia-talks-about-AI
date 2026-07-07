@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-import { DATA, REFERENCE_COST, fmtIndex } from "./IdiotIndexChart";
+import { DATA, COST_LOW, COST_HIGH, fmtIndex } from "./IdiotIndexChart";
 
 /*
   Table version of the same data driving IdiotIndexChart, placed directly
   before it in the MDX so a reader gets the raw numbers before the visual.
-  Imports DATA/REFERENCE_COST/fmtIndex from IdiotIndexChart.js rather than
-  redefining them, so the table and the bar chart can never disagree.
+  Imports DATA/COST_LOW/COST_HIGH/fmtIndex from IdiotIndexChart.js rather
+  than redefining them, so the table and the bar chart can never disagree.
 
   Rendered as a component (not a raw MDX markdown table) to match the dark
   card styling used by every other visual in this piece — see
@@ -35,7 +35,7 @@ export const IdiotIndexTable = () => {
         The Idiot Index, Today — By the Numbers
       </h3>
       <div style={{ color: "#f0f0f0", textAlign: "center", marginTop: 0, marginBottom: "20px", fontSize: "13px" }}>
-        Same five models as the chart below. Compute cost is one shared reference estimate (~${REFERENCE_COST.toFixed(2)}/1M), not per-model.
+        Same five models as the chart below. Compute cost is one shared plausible range (${COST_LOW.toFixed(2)}–${COST_HIGH.toFixed(2)}/1M), not per-model.
       </div>
 
       <div style={{ overflowX: "auto" }}>
@@ -45,8 +45,9 @@ export const IdiotIndexTable = () => {
               <th style={{ ...headStyle, textAlign: "left" }}>Company</th>
               <th style={{ ...headStyle, textAlign: "left" }}>Model</th>
               <th style={headStyle}>Token Price ($/1M out)</th>
-              <th style={headStyle}>Compute Cost Est. ($/1M out)</th>
-              <th style={headStyle}>Idiot Index</th>
+              <th style={headStyle}>Compute Cost Range ($/1M out)</th>
+              <th style={headStyle}>Idiot Index — Lower Bound</th>
+              <th style={headStyle}>Idiot Index — Upper Bound</th>
             </tr>
           </thead>
           <tbody>
@@ -55,8 +56,9 @@ export const IdiotIndexTable = () => {
                 <td style={{ padding: "10px 14px", color: d.color, fontWeight: 600 }}>{d.company}</td>
                 <td style={{ padding: "10px 14px" }}>{d.name}</td>
                 <td style={cellStyle}>{fmtPrice(d.price)}</td>
-                <td style={cellStyle}>{fmtPrice(REFERENCE_COST)}</td>
-                <td style={{ ...cellStyle, fontWeight: 700, color: d.indexValue >= 10 ? "#ef4444" : "#4ade80" }}>{fmtIndex(d.indexValue)}</td>
+                <td style={cellStyle}>{fmtPrice(COST_LOW)} – {fmtPrice(COST_HIGH)}</td>
+                <td style={{ ...cellStyle, fontWeight: 700, color: d.lowerBound >= 10 ? "#ef4444" : "#4ade80" }}>{fmtIndex(d.lowerBound)}</td>
+                <td style={{ ...cellStyle, fontWeight: 700, color: d.upperBound >= 10 ? "#ef4444" : "#4ade80" }}>{fmtIndex(d.upperBound)}</td>
               </tr>
             ))}
           </tbody>
@@ -64,7 +66,7 @@ export const IdiotIndexTable = () => {
       </div>
 
       <div style={{ textAlign: "center", color: "#f0f0f0", marginTop: "16px", marginBottom: 0, fontSize: 13 }}>
-        Green = under the illustrative 10x threshold, red = over it. See /research-notes for the full derivation of the reference cost.
+        Lower bound assumes compute costs the most (${COST_HIGH.toFixed(2)}/1M); upper bound assumes it costs the least (${COST_LOW.toFixed(2)}/1M). Green = under the illustrative 10x threshold, red = over it. See Sources below for where that range comes from.
       </div>
     </div>
   );
