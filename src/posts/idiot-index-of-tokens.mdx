@@ -1,0 +1,100 @@
+---
+title: "The Idiot Index of Tokens"
+date: "2026-07-07"
+image: "/images/idiot-index-of-tokens/cover.png"
+cardColor: "#f2cc8f"
+description: "Elon Musk coined the 'Idiot Index' to decide what SpaceX should build in-house. Applied to AI tokens, it explains why every frontier model launches at a markup that eventually collapses — and why it keeps happening again."
+---
+
+{/*
+  Charts are wired in src/app/blog/[slug]/page.js
+  (TokenPriceTrendChart, IdiotIndexChart).
+  Facts & sources: /research-notes/idiot-index-of-tokens.md (repo root).
+  TODO: generate + add cover image at /images/idiot-index-of-tokens/cover.png
+  (other posts use Gemini Nano Banana Pro for this).
+*/}
+
+*By Maia Salti*
+
+## The Idiot Index
+
+In 2001, Elon Musk flew to Russia to buy refurbished ICBMs. He wanted to send a small greenhouse to Mars, cheaply, as a publicity stunt to reignite public interest in space travel. The Russians quoted him a price he thought was absurd, and he flew home without a rocket.
+
+On the flight back, he did the math. What is a rocket actually made of? Aluminum, titanium, copper, carbon fiber. He worked out that the raw materials that go into a rocket cost around 2% of what SpaceX customers were being charged for a finished one. If materials were 2% of the price, the other 98% wasn't nature's fault. It was everyone else's margin, decades of an industry that had never been forced to get cheaper.
+
+That calculation is the reason SpaceX exists. And out of it, according to Walter Isaacson's 2023 biography, Musk started using a phrase to run the company: the **Idiot Index**.
+
+> "The ratio of finished-product cost to raw materials — the idiot index — is high, you're an idiot."
+
+The higher the ratio, the more of the price is just markup: someone else's labor, someone else's margin, someone else's inefficiency, priced in because you had no better option. Musk used it as a constant, almost obnoxious test inside SpaceX. As the story goes, he once asked an analyst about the cost of a component on the Raptor engine, was quoted something like $13,000, and shot back: "It's just steel. It's about two hundred bucks." He reportedly told his team that if you walked into a meeting without knowing which parts of your rocket had a high idiot index, you shouldn't expect to still have a job. Valves quoted at $250,000 got built in-house for a fraction of the price. An actuator quoted at $120,000 got built by an engineer for $5,000, because it turned out to be "no more complex than a garage door opener." A NASA-style latch quoted at $1,500 got replaced with $30 of bathroom-stall hardware.
+
+None of this meant labor or assembly should be free. It meant: if the number is high enough, you're not paying for the difficulty of the thing anymore. You're paying because nobody has bothered to make it cheaper yet, and you didn't have anywhere else to go.
+
+## Applying It to Tokens
+
+I couldn't stop thinking about that idea in the context of something completely different: what I pay, per token, to talk to an AI model.
+
+The idiot index doesn't translate perfectly. A rocket part has raw materials you can weigh. A token doesn't have a "material" in that sense; what it has is compute. Every token you get back from an API call was produced by a GPU spending some fraction of a second doing math, burning some fraction of a cent of electricity, on hardware someone paid for. That's the closest thing AI has to "raw materials": not the years of research and training that built the model, but the marginal cost of actually running it for you, right now, one more time.
+
+So here's the version of the idiot index I want to apply:
+
+**Idiot Index of a token = price you're charged per token ÷ the marginal compute cost to generate that token.**
+
+I have to be upfront about something before going further: that denominator is genuinely hard to pin down, and anyone who tells you otherwise is oversimplifying. The two biggest inputs, how fast you assume GPUs depreciate and how efficiently a provider is batching requests, can each swing the estimate by somewhere between 2x and 100x on their own. The most-cited public estimate for the GPT-4 era, from the analyst firm SemiAnalysis, put compute cost around $4.90 per million tokens on a cluster of 128 A100 GPUs in mid-2023. On today's hardware, published benchmarks put the cost of running a similarly-sized model anywhere from about 2 cents to a few dollars per million tokens, depending entirely on how efficiently that hardware is being used. So every ratio I quote below should be read the way Musk probably meant his to be read in the moment: not a precise audit, but a gut-check on whether the price makes any sense.
+
+## The Idiot Index Over Time
+
+Here's the thing that surprised me most once I actually pulled the pricing history: it doesn't look like a chart of a market maturing. It looks like a heart monitor.
+
+<TokenPriceTrendChart />
+
+If AI token prices were simply following the arc every other computing resource has followed, i.e., expensive at launch, then a smooth decline as the technology commoditizes, you'd expect one descending line per company. That's not what happened. Instead, every company's most expensive currently-available model spikes back up, again and again, at almost every major release.
+
+OpenAI's GPT-3 (Davinci) launched at $60 per million output tokens in late 2021, got cut to $20 within a year, and by 2023 GPT-3.5-turbo was down near $2. Then GPT-4 launched and reset the top of the market to $60 again, exactly where Davinci had started two years earlier. GPT-4 got cheaper (Turbo at $30, GPT-4o down to $10), and then o1-preview launched in September 2024 at $60 per million output tokens; the exact same number OpenAI charged for its most expensive model three years earlier. GPT-5 landed at a comparatively cheap $10 in 2025, and by GPT-5.5 in 2026, the frontier tier was back up to $30.
+
+Anthropic's story is the same shape. Claude 1 launched at roughly $33 per million output tokens; Claude 2.1 brought that down to $24. Then Claude 3 Opus launched at $75, more than triple. Opus held at $75 for over a year and a half, until Opus 4.5 cut it 67% to $25 in November 2025, the single biggest price cut in Anthropic's history. Seven months later, Claude Fable 5 launched at $50.
+
+DeepSeek, despite its reputation as the company that broke the AI pricing model, shows the exact same whiplash, just compressed into a much shorter timeframe. DeepSeek-V2 launched at $0.28 per million output tokens. DeepSeek-R1, the reasoning model that briefly terrified Silicon Valley in January 2025, launched at $2.19, nearly 8x more expensive. V3.2-Exp brought the price back down to $0.42 in September 2025. Then DeepSeek-V4 Pro launched in April 2026 at $3.48, another spike, before a "temporary" 75% discount got made permanent a month later, dropping it to $0.87.
+
+Google's flagship Gemini Pro tier is the one exception that's really more of a slow climb than a zigzag: $1.50 in early 2024, up to $10.50 for Gemini 1.5 Pro at launch, cut to $5, then Gemini 2.5 Pro launched at $10 again, and Gemini 3 Pro Preview currently sits at $12.
+
+I think this pattern is the single most useful thing the price data actually shows: the idiot index of a token doesn't quietly shrink toward one as AI matures. It resets to something high every time a company ships a capability nobody else has yet, then decays back down once competitors (or a cheaper version of the same model) catch up. It is, in other words, exactly what Musk was describing. When SpaceX had no alternative to the Russian ICBM quote, the idiot index was whatever the market would bear. The moment SpaceX (or, here, a competing lab, or an open-weight alternative) could build the part itself, the price collapsed. A new AI capability behaves like a part nobody else can manufacture yet, for exactly as long as that's true.
+
+## The Idiot Index, Today
+
+So where does that leave the current generation of flagship models, the ones actually available to you right now, as of this writing?
+
+<IdiotIndexChart />
+
+OpenAI's GPT-5.5 is $30 per million output tokens. Anthropic's Claude Opus 4.8 is $25. Google's Gemini 3.1 Pro Preview is $12. DeepSeek's V4 Pro, after its price cut, is $0.87.
+
+Laid against a plausible compute-cost band for 2025-2026 hardware (roughly 2 cents to $4.20 per million tokens, and I want to stress that band is wide on purpose, because the honest range really is that wide), DeepSeek's flagship is the only one of the four whose sticker price sits inside the plausible cost range. The three Western labs' flagships all sit clearly above the top of that band, in some cases by an order of magnitude or more depending on which end of the range you believe.
+
+I don't think that means DeepSeek is selling tokens at cost, and to be fair to them, they don't claim to either. In a disclosure DeepSeek published themselves in early 2025, they estimated their own theoretical cost-to-revenue ratio at around 6.45x, meaning even DeepSeek's aggressively-priced tokens carry a real markup over what they say it costs them to generate them. They were explicit that the figure was theoretical, not an audited number. But it's a useful anchor: if a lab that's frequently accused of dumping tokens below cost is, by its own admission, still charging roughly 6 times its compute cost, it's a reasonable bet the Western labs charging 3–15x DeepSeek's price aren't running anywhere close to a 1x idiot index either.
+
+And there's a wrinkle here that Musk's original framing doesn't quite capture: falling sticker prices don't necessarily mean a falling idiot index. SemiAnalysis has reported that Anthropic's inference-specific gross margin rose from roughly 38% in 2025 to somewhere in the high-60s to low-70% range by mid-2026, even as list prices for Claude models fell. The efficiency gains from newer hardware and better serving software appear to be outrunning the price cuts, not just matching them. That's the equivalent of SpaceX's raw material costs falling faster than the price they charge for the finished rocket. The ratio, if anything, might be getting worse, even while your monthly bill goes down.
+
+## Would Musk Build His Own Rocket Here?
+
+The thing about a high idiot index, in Musk's framing, was never that it was permanent. It was a signal: this is worth building yourself. And that's arguably exactly what's been happening around AI pricing for the last two years. Every time a frontier lab's idiot index gets uncomfortably high, someone builds the in-house version: an open-weight model, a cheaper competitor, a company standing up its own inference stack instead of paying list price. DeepSeek's entire origin story, in this framing, is a rocket company startled by a Russian ICBM quote.
+
+I don't think token prices are going to converge to 1x anytime soon, and honestly, I'm not sure they should; the R&D that produces a genuinely new capability has to get paid for somehow, and a training run that costs hundreds of millions of dollars doesn't amortize itself. But I do think the idiot index is a genuinely useful lens for reading the next twelve months of AI pricing news, in a way that "the price went down" alone isn't. The real question, every time a new flagship model launches at a price that makes you wince, isn't whether it'll get cheaper. It's how long it'll take before someone decides it's just steel, and about two hundred bucks.
+
+---
+
+## Sources
+
+- Isaacson, Walter — *Elon Musk* (2023), the "idiot index" quote and Raptor engine / valve / actuator / latch anecdotes
+- Wait But Why — [How (and Why) SpaceX Will Colonize Mars](https://waitbutwhy.com/2015/08/how-and-why-spacex-will-colonize-mars.html/3) (2015, the Russia-trip origin story and the ~2% raw-material figure)
+- OpenAI — [API pricing](https://developers.openai.com/api/docs/pricing) · [model deprecations](https://developers.openai.com/api/docs/deprecations)
+- Anthropic — [Claude pricing](https://platform.claude.com/docs/en/about-claude/pricing)
+- Google — [Gemini API pricing](https://ai.google.dev/gemini-api/docs/pricing)
+- DeepSeek — [API pricing](https://api-docs.deepseek.com/quick_start/pricing)
+- SemiAnalysis — [GPT-4 architecture, infrastructure, and cost](https://newsletter.semianalysis.com/p/gpt-4-architecture-infrastructure) (Jul 2023) · [InferenceX benchmark](https://inferencex.semianalysis.com/) · [Anthropic growth and Bedrock mix](https://newsletter.semianalysis.com/p/anthropic-growth-and-bedrock-mix) (May 2026) · [AI value capture](https://newsletter.semianalysis.com/p/ai-value-capture-the-shift-to-model) (2026)
+- NVIDIA — [Lowest token cost, AI factories](https://blogs.nvidia.com/blog/lowest-token-cost-ai-factories/) (Apr 2026)
+- Epoch AI — [Inference economics of language models](https://arxiv.org/html/2506.04645v1) (Jun 2025) · [LLM inference price trends](https://epoch.ai/data-insights/llm-inference-price-trends) (Mar 2025)
+- a16z — [LLMflation: LLM inference cost](https://a16z.com/llmflation-llm-inference-cost/) (Nov 2024)
+- DeepSeek's disclosed inference economics — [Computerworld coverage](https://www.computerworld.com/article/3837452/deepseek-claims-545-cost-profit-ratio-challenging-ai-industry-economics.html) (Mar 2025)
+- Full dated pricing tables, per-model sources, and confidence flags for every figure in this piece: `/research-notes/idiot-index-of-tokens.md`
+
+_Data research run by Claude Code_
