@@ -127,6 +127,31 @@ same input. Source: https://www.cnbc.com/2025/11/14/ai-gpu-depreciation-coreweav
 | DeepSeek R1, NVIDIA's own H200 worked example | $4.20/M (H200) vs. $0.12/M (GB300 NVL72, ~35x cheaper) | NVIDIA blog, Apr 2026 — vendor-interested, cross-check against InferenceX (lower) | SOLID (vendor) |
 | DeepSeek's own disclosed inference economics | H800 @ $2/GPU-hr → $87,072/day cost vs. $562,027/day theoretical revenue at list price → **~6.45x "cost-profit ratio,"** explicitly labeled theoretical by DeepSeek itself | DeepSeek disclosure, Feb–Mar 2025 | SOLID (disclosure) / the 545% headline number itself is explicitly caveated as unverifiable by named analysts (Neil Shah/Counterpoint, Hyoun Park/Amalgam) |
 
+### $/GPU-hour rental price over time (SHIPPED — GpuRentalCostChart, cleaner proxy)
+The $/M-token anchors above aren't a clean time series — cost-per-token conflates
+hardware generation with model size (GPT-4-on-A100 2023 vs. GPT-3-on-V100 2020 isn't
+hardware-only). Raw GPU rental price is a hardware-only number, independent of any
+model, and makes a genuinely apples-to-apples "did the raw material get cheaper over
+time" chart. Used in the article right after the "raw materials is transient" line —
+the point being that the hardware itself didn't fall monotonically either, it spiked
+hard in 2024 before crashing back down.
+
+| Era | GPU | $/hour | Basis | Confidence |
+|---|---|---|---|---|
+| 2023 | A100-80GB | $1.50 | Lambda Cloud pricing, cited in Sardana et al. "Beyond Chinchilla-Optimal" (arXiv:2401.00448, 2024) | SOLID |
+| 2023-12 | H100 | ~$2.00 (typical) | SemiAnalysis, direct quote: "even the most favorable GPU cloud deals are around $2/hour" (Dec 2023); same piece: efficient-operator floor ~$1.525/hr, "some buyers pay more than $3/hour" | SOLID |
+| 2024-mid | H100 | ~$8–10 (peak) | intuitionlabs.ai H100 rental price comparison (2026), retrospective | CONTESTED — single retrospective source, exact date not pinned down |
+| 2026-mid | H100 | ~$2.85–3.50 (typical), range $1.49 (Hyperbolic)–$6.98 (Azure) | same intuitionlabs.ai piece — a 64–75% decline off the 2024 peak | SOLID |
+
+2020 V100 pricing (~$1.96/hr reserved AWS p3.2xlarge, from the same weak single-blogger
+source as the UNVERIFIED GPT-3 row above) was deliberately excluded from the shipped
+chart to keep it to SOLID/well-corroborated points only, per the "cleaner source" ask.
+
+CAVEAT stated in the component and the article prose: this tracks hardware RENTAL cost,
+not $/token compute cost — newer GPUs are also faster (more tokens/sec per dollar), so
+a full $/token curve would fall faster than this line alone shows. This chart answers
+the narrower question of whether the raw material itself got monotonically cheaper (no).
+
 ### Published margin/ratio commentary (two live, disagreeing camps — present as a real
 dispute, not settled fact)
 

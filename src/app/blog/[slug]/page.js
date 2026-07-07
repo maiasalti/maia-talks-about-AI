@@ -17,6 +17,7 @@ import { CapabilityCostChart } from "../../../components/CapabilityCostChart";
 import { TokenPriceTrendChart } from "../../../components/TokenPriceTrendChart";
 import { IdiotIndexChart } from "../../../components/IdiotIndexChart";
 import { IdiotIndexTable } from "../../../components/IdiotIndexTable";
+import { GpuRentalCostChart } from "../../../components/GpuRentalCostChart";
 import { SubscribeForm } from "../../../components/SubscribeForm";
 
 const postsDirectory = path.join(process.cwd(), "src/posts");
@@ -63,7 +64,8 @@ export default async function PostPage({ params }) {
                 CapabilityCostChart,
                 TokenPriceTrendChart,
                 IdiotIndexTable,
-                IdiotIndexChart
+                IdiotIndexChart,
+                GpuRentalCostChart
               }}
             />
           </div>
