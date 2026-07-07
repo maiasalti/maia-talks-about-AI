@@ -130,7 +130,7 @@ export const GpuRentalCostChart = () => {
       </ResponsiveContainer>
 
       <div style={{ textAlign: "center", color: "#f0f0f0", marginTop: "16px", marginBottom: 0, fontSize: 13 }}>
-        A proxy for hardware access cost, not a full $/token curve — newer GPUs are also faster, so per-token cost falls faster than this line alone shows.
+        A proxy for hardware access cost, not a full $/token curve: newer GPUs are also faster, so per-token cost falls faster than this line alone shows.
       </div>
     </div>
   );
