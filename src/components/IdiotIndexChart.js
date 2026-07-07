@@ -53,7 +53,9 @@ const COLOR_GOOGLE = "#4285F4";
 const COLOR_DEEPSEEK = "#f97316";
 const COLOR_THRESHOLD = "#ef4444";
 
-const REFERENCE_COST = Math.sqrt(0.02 * 4.2); // ~$0.29 / 1M output tokens
+// Exported so IdiotIndexTable can render the exact same numbers — single
+// source of truth, table and chart can never drift apart.
+export const REFERENCE_COST = Math.sqrt(0.02 * 4.2); // ~$0.29 / 1M output tokens
 
 const RAW = [
   { name: "GPT-5.5", company: "OpenAI", price: 30.0, color: COLOR_OPENAI },
@@ -63,7 +65,7 @@ const RAW = [
   { name: "V4 Pro", company: "DeepSeek", price: 0.87, color: COLOR_DEEPSEEK },
 ];
 
-const DATA = RAW.map((d) => ({ ...d, indexValue: d.price / REFERENCE_COST }));
+export const DATA = RAW.map((d) => ({ ...d, indexValue: d.price / REFERENCE_COST }));
 
 const LEGEND = [
   { label: "OpenAI", color: COLOR_OPENAI },
@@ -72,7 +74,7 @@ const LEGEND = [
   { label: "DeepSeek", color: COLOR_DEEPSEEK },
 ];
 
-const fmtIndex = (v) => `${v >= 10 ? Math.round(v) : v.toFixed(1)}x`;
+export const fmtIndex = (v) => `${v >= 10 ? Math.round(v) : v.toFixed(1)}x`;
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
