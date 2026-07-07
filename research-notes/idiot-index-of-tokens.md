@@ -368,27 +368,32 @@ point; annotate the big cut events (Gemini 1.5 Pro/Flash Oct/Aug 2024, Claude Op
 4.1→4.5 Nov 2025 −67%, DeepSeek V3.2-Exp Sep 2025, DeepSeek V4-Pro permanent discount
 May 2026).
 
-### Chart 2 — Current top-tier Idiot Index comparison
-Bar or scatter: current flagship price per company (Y, $/M output tokens, log) vs.
-estimated marginal compute cost (X or ratio label) using the ~$4.90/M (2023 A100 GPT-4
-era) → current H100/B200 range ($0.02–$4.20/M depending on utilization) as the
-denominator band. **State the utilization/depreciation assumptions directly on the
-chart** since the ratio swings ~2–100x on those two inputs alone — this chart cannot
-honestly show a single precise number per model, only a plausible range.
+### Chart 2 — Current top-tier Idiot Index comparison (SHIPPED — bar chart)
+Bar chart, one bar per current flagship: Y = Idiot Index (price ÷ a single shared
+reference compute cost), linear scale. Red dashed ReferenceLine at y=10, labeled
+"illustrative 10x threshold" (explicitly caveated in both the chart and the prose as
+NOT a verified Musk quote — see item 2 below).
 
-Current flagship snapshot for Chart 2 (2026-07-07, $/1M output):
-- OpenAI GPT-5.5: $30.00 · GPT-5.5-pro: $180.00 · GPT-5.4: $15.00
-- Anthropic Claude Opus 4.8: $25.00 · Claude Fable 5: $50.00 · Claude Sonnet 5: $10.00 (intro)
-- Google Gemini 3.5 Flash: $9.00 · Gemini 3.1 Pro Preview: $12–18
-- DeepSeek V4-Pro: $0.87 · V4-Flash: $0.28
+Reference compute cost used = **geometric mean of the $0.02–$4.20/M band = ~$0.29/M**.
+Chosen specifically because collapsing the band to a single bar-chart denominator
+requires ONE number, and the geometric mean is a defensible, symmetric-in-log-space
+choice rather than picking either extreme. Documented in the component's code comment
+and in the article prose as one reasonable choice, not the only one — the ORDERING
+across companies is far less sensitive to this choice than the absolute bar heights.
 
-Rough current-flagship idiot index (list price ÷ ~$0.02–4.20/M plausible compute-cost
-band, 2025-2026 hardware): OpenAI/Anthropic frontier tiers land in the high tens-to-
-low-hundreds-x range at the low end of the cost band, DeepSeek's flagship lands close
-to 1x-single-digit-x — i.e., DeepSeek is the one lab currently pricing close to its
-own disclosed compute cost (see the 6.45x "cost-profit ratio" DeepSeek self-reported
-in Section B), while the US labs' frontier tiers carry the highest idiot index by a
-wide margin. State the band, not a single number, on the chart itself.
+Points shipped (2026-07-07 prices):
+| Model | Company | Price $/1M out | Idiot Index (÷ $0.29) |
+|---|---|---|---|
+| GPT-5.5 | OpenAI | $30.00 | ~104x |
+| Opus 4.8 | Anthropic | $25.00 | ~86x |
+| Fable 5 | Anthropic | $50.00 | ~173x |
+| Gemini 3.1 Pro Preview | Google | $12.00 | ~41x |
+| V4 Pro | DeepSeek | $0.87 | ~3x |
+
+DeepSeek is the only bar under the illustrative 10x line. Its own 2025 disclosure
+implies a real-world ratio of ~6.45x for its own infra (Section B) — noticeably higher
+than the ~3x this shared-anchor math produces for it, and the article prose states
+that discrepancy explicitly as a cross-check rather than smoothing over it.
 
 ---
 
