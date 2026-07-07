@@ -124,7 +124,7 @@ const TopLabel = ({ x, y, width, value }) => {
 };
 
 const Y_MIN = 0.1;
-const Y_MAX = 3000;
+const Y_MAX = 6000; // headroom above the tallest bar (Fable 5 upper bound, 2,500x) so its label doesn't clip against the plot ceiling
 
 export const IdiotIndexChart = () => {
   return (
