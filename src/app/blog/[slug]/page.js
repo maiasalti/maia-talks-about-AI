@@ -2,6 +2,9 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css";
 import { ValenceComparisonChart, AudioFeaturesRadar, SeasonalTrendLine } from "../../../components/SeasonalMusicChart";
 import { SentenceLengthComparison, SentimentAnalysis, ConnectorWordsAnalysis, PunctuationAnalysis } from "../../../components/AIModelCharts";
 import { TouchdownRateChart, InterceptionRateChart, FumbleRateChart, EPAChart, TurnoverRateChart } from "../../../components/SuperBowl49Chart";
@@ -19,6 +22,10 @@ import { IdiotIndexChart } from "../../../components/IdiotIndexChart";
 import { IdiotIndexTable } from "../../../components/IdiotIndexTable";
 import { GpuRentalCostChart } from "../../../components/GpuRentalCostChart";
 import { SubscribeForm } from "../../../components/SubscribeForm";
+import { JacobianTrajectory } from "../../../components/JacobianTrajectory";
+import { JSpaceEvolvingTrajectory } from "../../../components/JSpaceEvolvingTrajectory";
+import { TransformerDiagram } from "../../../components/TransformerDiagram";
+import { JSpacePropertiesGrid } from "../../../components/JSpacePropertiesGrid";
 
 const postsDirectory = path.join(process.cwd(), "src/posts");
 
@@ -39,6 +46,12 @@ export default async function PostPage({ params }) {
           <div className="space-y-8">
             <MDXRemote
               source={content}
+              options={{
+                mdxOptions: {
+                  remarkPlugins: [remarkMath],
+                  rehypePlugins: [rehypeKatex],
+                },
+              }}
               components={{
                 ValenceComparisonChart,
                 AudioFeaturesRadar,
@@ -65,7 +78,11 @@ export default async function PostPage({ params }) {
                 TokenPriceTrendChart,
                 IdiotIndexTable,
                 IdiotIndexChart,
-                GpuRentalCostChart
+                GpuRentalCostChart,
+                JacobianTrajectory,
+                JSpaceEvolvingTrajectory,
+                TransformerDiagram,
+                JSpacePropertiesGrid
               }}
             />
           </div>
