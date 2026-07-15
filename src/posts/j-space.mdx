@@ -19,7 +19,7 @@ description: "Anthropic discovered a small section of Claude's internal reasonin
 
 Last week, Anthropic published a paper on a discovery they made regarding Claude's internal reasoning they call the **J-space**. It seems to be the steps that Claude works through before it commits to a final word: the closest thing we've come to seeing the inside of an LLM's "brain."
 
-Although it holds a median of only 6–7% of a concept's representation inside the model and never more than about a tenth of the model's activity at any layer, if you switch it off, Claude's multi-step reasoning collapses to almost nothing. Fluent speech and simple recall remain in-tact.
+Although it holds a median of only 6–7% of a concept's representation inside the model and never more than about a tenth of the model's activity at any layer, if you switch it off, Claude's multi-step reasoning collapses to almost nothing. Fluent speech and simple recall remain intact.
 
 I quite liked the [video that Anthropic released](https://www.youtube.com/watch?v=rKV5JcALQoQ) with the [research post](https://www.anthropic.com/research/global-workspace). It's a long research post though, so I thought I'd write a summary of the parts I considered the coolest and how I interpreted the mathematics of the J-space.
 
@@ -33,11 +33,11 @@ Every large language model, including Claude, runs the same process: input embed
 
 As I love my analogies, I will ask you to picture it as a factory building with 50 floors. On each floor, the workers speak a different technical language from the other floors. An iPhone is in production, and it starts from the bottom floor, and each floor modifies the iPhone as it ascends the floors.
 
-When the iPhone is on any one of the floors besides the last, say floor 37, it doesn't look like a phone yet, as it's not the finished product, and it's only interpretable to the people on that floor. At the very top floor, there is an official dictionary that tells you exactly how to use the iPhone, but that dictionary obviously only works once the iPhone is fully built, not at any other floor. So what happens if you want to see what's going on at floor 37 and see the inside of the phone and how it works? Well you couldn't, until now.
+When the iPhone is on any one of the floors besides the last, say floor 37, it doesn't look like a phone yet, and it's only interpretable to the people on that floor. At the very top floor, there is an official dictionary that tells you exactly how to use the iPhone, but that dictionary obviously only works once the iPhone is fully built, not at any other floor. So what if you wanted to see what's going on inside of the phone at floor 37? Well, you couldn't, until now.
 
 Let me translate this to the LLM structure: the floors are the model's layers and the iPhone is the activation vector that gets modified through the floors. The unembedding matrix (`W_U`) is the dictionary that lets you translate the activation vector (a vector of raw numbers) to logits (a raw score for each word). Those logits get passed through **softmax**, which squashes that list of scores into probabilities that add up to 1. Whichever word ends up with the highest probability is usually the one the model says next. If you apply the unembedding matrix (`W_U`) to the activation vector at any of the middle layers, it won't translate properly, as those layers speak a different language.
 
-Anthropic discovered that if you tweaked how the iPhone was made at every floor one-by-one and saw how that affected the final iPhone, you could read what each floor is contributing to the final phone.
+Anthropic discovered that if you tweaked how the iPhone was made at every floor one by one and saw how that affected the final iPhone, you could read what each floor is contributing to the final phone.
 
 Okay maybe I ran on too long with my analogy. The point is this: the Jacobian lets you read a mid-layer vector in the output's language by measuring which words it's influencing downstream. That reveals the concepts the model is holding at that layer, before it has fully formed its output. This, at least in my opinion, is the closest thing we've come to seeing how the model "thinks."
 
@@ -73,9 +73,9 @@ $$\text{lens}(h_\ell) = \text{softmax}\big(W_U\ \text{norm}(J_\ell h_\ell)\big)$
 
 The output is a ranked list of words the vector is projected to produce downstream.
 
-Anthropic calls this the **J-lens**, and the small slice of representation it's reading is the **J-space**: the model's private, mid-process "thinking", sometimes revealing what it's silently considering even when it never says it out loud.
+Anthropic calls this the **J-lens**, and the small slice of representation it's reading is the **J-space**: the model's private, mid-process "thinking," sometimes revealing what it's silently considering even when it never says it out loud.
 
-You can run the J-lens yourself on real prompts, [Neuronpedia built a live demo](https://www.neuronpedia.org/jlens) which I've been playing with.
+You can run the J-lens yourself on real prompts. [Neuronpedia built a live demo](https://www.neuronpedia.org/jlens) which I've been playing with.
 
 ## Why the Middle Layers
 
@@ -107,7 +107,7 @@ If the J-space were only correlated with the model's reasoning and not the answe
 
 **Flexible generalization** — swap "France" for "China," and Claude's answers about the capital, the language, the continent, and the currency all shift together, consistently. As if you'd changed the actual subject of the sentence, not just one detail.
 
-**Selectivity** — ablate the J-space entirely, across a whole battery of tasks, and simple stuff (parsing input, recalling facts, speaking fluently) keeps working fine, while anything that requires internal reasoning or multi-step inference drops out. This is the same ablation result from the intro: it's what tells you the J-space isn't just along for the ride, it's doing the actual thinking.
+**Selectivity** — ablate the J-space entirely, across a whole battery of tasks, and simple stuff (parsing input, recalling facts, speaking fluently) keeps working fine, while anything that requires internal reasoning or multi-step inference drops out. This is the same ablation result from the intro: it's what tells you the J-space isn't just along for the ride: it's doing the actual thinking.
 
 ## Why This Matters
 
