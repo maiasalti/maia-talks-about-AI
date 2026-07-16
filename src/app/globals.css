@@ -47,30 +47,34 @@ p + ul {
 /* Blog post (.prose) typography. Moved here from an inline <style> in
    blog/[slug]/page.js — React 19 hoists <style> tags, which caused a
    hydration mismatch. Same rules, just a proper home. */
-.prose h2 {
+/* Scoped to direct children of the MDX content wrapper (article.prose > div)
+   so these rules only hit real article text, not <p>/<strong>/<em> etc.
+   nested inside embedded React widgets (charts, calculators), which set
+   their own text colors via inline styles. */
+.prose > div > h2 {
   font-size: 1.875rem !important;
   font-weight: 700 !important;
   color: black !important;
   margin-top: 3rem !important;
   margin-bottom: 1rem !important;
 }
-.prose ul {
+.prose > div > ul {
   color: black !important;
   list-style-type: disc !important;
   margin-left: 1.5rem !important;
 }
-.prose li {
+.prose > div > ul li {
   color: black !important;
   margin-bottom: 0.5rem !important;
 }
-.prose ol {
+.prose > div > ol {
   color: black !important;
   list-style-type: decimal !important;
   margin-left: 1.5rem !important;
 }
-.prose p, .prose strong, .prose em {
+.prose > div > p, .prose > div > p strong, .prose > div > p em {
   color: black !important;
 }
-.prose a {
+.prose > div > p a {
   color: #1d4ed8 !important;
 }

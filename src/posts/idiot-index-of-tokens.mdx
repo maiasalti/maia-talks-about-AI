@@ -34,9 +34,9 @@ The higher the ratio, the more of the price is just markup: someone else's labor
 
 Musk used it as a constant, almost obnoxious test inside SpaceX.
 
-He apparently once asked an analyst about the cost of a component on the Raptor engine and was quoted something like $13,000. He responded: "It's just steel. It's about two hundred bucks."
+He apparently once asked an analyst about the cost of a component on the Raptor engine and was quoted something like \$13,000. He responded: "It's just steel. It's about two hundred bucks."
 
-He reportedly told his team that if you walked into a meeting without knowing which parts of your rocket had a high idiot index, you shouldn't expect to still have a job. Valves quoted at $250,000 got built in-house for a fraction of the price. An actuator quoted at $120,000 got built by an engineer for $5,000, because it turned out to be "no more complex than a garage door opener." A NASA-style latch quoted at $1,500 got replaced with $30 of bathroom-stall hardware.
+He reportedly told his team that if you walked into a meeting without knowing which parts of your rocket had a high idiot index, you shouldn't expect to still have a job. Valves quoted at \$250,000 got built in-house for a fraction of the price. An actuator quoted at \$120,000 got built by an engineer for \$5,000, because it turned out to be "no more complex than a garage door opener." A NASA-style latch quoted at \$1,500 got replaced with \$30 of bathroom-stall hardware.
 
 None of this meant labor or assembly should be free. It meant: if the number is high enough (supposedly above 10X), you're not paying for the difficulty of the thing anymore. You're paying because nobody has bothered to make it cheaper yet, and you didn't have anywhere else to go.
 
@@ -54,7 +54,7 @@ So here's the version of the idiot index I will apply:
 
 I have to be honest before going further: that denominator is genuinely hard to pin down. The two biggest inputs, how fast you assume GPUs depreciate and how efficiently a provider is batching requests, can each swing the estimate by somewhere between 2x and 100x on their own.
 
-The most-cited public estimate for the GPT-4 era, from the analyst firm SemiAnalysis, put compute cost around $4.90 per million tokens on a cluster of 128 A100 GPUs in mid-2023. On today's hardware, published benchmarks put the cost of running a similarly-sized model anywhere from about 2 cents to a few dollars per million tokens, depending entirely on how efficiently that hardware is being used.
+The most-cited public estimate for the GPT-4 era, from the analyst firm SemiAnalysis, put compute cost around \$4.90 per million tokens on a cluster of 128 A100 GPUs in mid-2023. On today's hardware, published benchmarks put the cost of running a similarly-sized model anywhere from about 2 cents to a few dollars per million tokens, depending entirely on how efficiently that hardware is being used.
 
 So every ratio I quote below should be read the way Musk probably meant his to be read in the moment: not a precise audit, but a gut-check on whether the price makes any sense.
 
@@ -68,7 +68,7 @@ If token prices reflected the arc that every other computing resource has follow
 
 Instead, every company's most expensive currently-available model shoots back up at almost every major release, even as its older, cheaper tiers kept getting cheaper alongside it.
 
-Anthropic cut Opus from $75 to $25 in November 2025, its biggest price cut ever, then launched Claude Fable 5 seven months later at double that. DeepSeek compressed the same zigzag into under two years: R1 launched at nearly 8x its predecessor, got undercut by V3.2-Exp, then V4 Pro spiked again before a "temporary" 75% discount quietly became permanent.
+Anthropic cut Opus from \$75 to \$25 in November 2025, its biggest price cut ever, then launched Claude Fable 5 seven months later at double that. DeepSeek compressed the same zigzag into under two years: R1 launched at nearly 8x its predecessor, got undercut by V3.2-Exp, then V4 Pro spiked again before a "temporary" 75% discount quietly became permanent.
 
 I think this shows that the price of a token won't ever shrink toward a single value, for as long as the models are still improving. It resets to a high price every time a company ships a capability nobody else has yet, then decays back down once competitors (or a cheaper version of the same model) catch up.
 
@@ -80,7 +80,7 @@ So what does the Idiot Index of the current generation of flagship models look l
 
 <IdiotIndexTable />
 
-Rather than turn "price ÷ compute cost" into a single number per model, I calculated it at both ends of that 2-cent-to-$4.20 range: assuming compute costs as much as $4.20 for the lower bound of the Idiot Index, and assuming it costs as little as 2 cents for the upper bound. I don't think that either end is more "correct" than the other; the honest number for any of these models sits somewhere in between, and I don't have the data to say exactly where.
+Rather than turn "price ÷ compute cost" into a single number per model, I calculated it at both ends of that 2-cent-to-\$4.20 range: assuming compute costs as much as \$4.20 for the lower bound of the Idiot Index, and assuming it costs as little as 2 cents for the upper bound. I don't think that either end is more "correct" than the other; the honest number for any of these models sits somewhere in between, and I don't have the data to say exactly where.
 
 <IdiotIndexChart />
 
@@ -88,7 +88,7 @@ There's one more thing worth noting: falling token prices don't necessarily mean
 
 <GpuRentalCostChart />
 
-I went and pulled the cleaner version of this same question: the actual $/hour it costs to rent the GPU itself. A100s ran about $1.50/hour in 2023. H100s were around $2 by the end of that year. Then the AI boom hit, and that same H100 spiked to $8-9/hour by mid-2024, before crashing back down to about $3 now. Even the raw material didn't get steadily cheaper. It zigzagged too.
+I went and pulled the cleaner version of this same question: the actual \$/hour it costs to rent the GPU itself. A100s ran about \$1.50/hour in 2023. H100s were around \$2 by the end of that year. Then the AI boom hit, and that same H100 spiked to \$8-9/hour by mid-2024, before crashing back down to about \$3 now. Even the raw material didn't get steadily cheaper. It zigzagged too.
 
 ## Would Musk Build His Own Rocket Here?
 

@@ -1,5 +1,12 @@
 [
   {
+    "slug": "j-space",
+    "title": "The J-Space: How I Learned To Read An LLM's Mind",
+    "url": "https://www.maiatalksabout.ai/blog/j-space",
+    "description": "Anthropic discovered a small section of Claude's internal reasoning they call the \"J-space.\" I explore what it is, and why it's so damn cool.",
+    "tags": ["AI", "interpretability", "Anthropic", "Claude", "research"]
+  },
+  {
     "slug": "idiot-index-of-tokens",
     "title": "The Idiot Index of Tokens",
     "url": "https://www.maiatalksabout.ai/blog/idiot-index-of-tokens",
