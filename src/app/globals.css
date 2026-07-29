@@ -75,6 +75,7 @@ p + ul {
 .prose > div > p, .prose > div > p strong, .prose > div > p em {
   color: black !important;
 }
-.prose > div > p a {
+.prose > div > p a, .prose > div > ul li a, .prose > div > ol li a {
   color: #1d4ed8 !important;
+  text-decoration: underline !important;
 }
