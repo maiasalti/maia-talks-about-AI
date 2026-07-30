@@ -1,5 +1,12 @@
 [
   {
+    "slug": "attention-is-still-all-you-need",
+    "title": "Attention Is Still All You Need",
+    "url": "https://www.maiatalksabout.ai/blog/attention-is-still-all-you-need",
+    "description": "Moonshot AI's Kimi K3 — a 2.8T-parameter open-weight model — lands just behind the frontier at a fraction of the price. What that means for open weights, U.S. AI leadership, and where value goes when models get commoditized.",
+    "tags": ["AI", "open weights", "Kimi K3", "Moonshot AI", "frontier labs", "economics", "China", "policy"]
+  },
+  {
     "slug": "j-space",
     "title": "The J-Space: How I Learned To Read An LLM's Mind",
     "url": "https://www.maiatalksabout.ai/blog/j-space",
