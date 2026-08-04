@@ -28,6 +28,16 @@ export function getSortedPostsData() {
   });
 }
 
+// Get the raw (frontmatter-stripped) body of a post, for callers that need the
+// prose itself rather than just metadata — e.g. the teaser in /feed.xml.
+export function getPostContent(id) {
+  const mdxPath = path.join(postsDirectory, `${id}.mdx`);
+  const mdPath = path.join(postsDirectory, `${id}.md`);
+  const fullPath = fs.existsSync(mdxPath) ? mdxPath : mdPath;
+
+  return matter(fs.readFileSync(fullPath, "utf8")).content;
+}
+
 // Get single post content (for individual post pages)
 export async function getPostData(id) {
   const fullPath = path.join(postsDirectory, `${id}.md`);
