@@ -5,6 +5,7 @@ import "./globals.css";
 import Script from 'next/script'
 import { SubscribeForm } from '../components/SubscribeForm';
 import ChatWidget from '../components/ChatWidget';
+import { siteConfig } from '../lib/site';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,8 +18,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Maia Talks About AI",
-  description: "A blog where I share data stories, analysis, and visuals",
+  title: siteConfig.title,
+  description: siteConfig.description,
+  alternates: {
+    types: {
+      "application/rss+xml": [
+        { url: "/feed.xml", title: `${siteConfig.title} RSS Feed` },
+      ],
+    },
+  },
 };
 
 export default function RootLayout({ children }) {
