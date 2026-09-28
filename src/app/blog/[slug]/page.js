@@ -26,6 +26,7 @@ import { JacobianTrajectory } from "../../../components/JacobianTrajectory";
 import { JSpaceEvolvingTrajectory } from "../../../components/JSpaceEvolvingTrajectory";
 import { TransformerDiagram } from "../../../components/TransformerDiagram";
 import { JSpacePropertiesGrid } from "../../../components/JSpacePropertiesGrid";
+import { ZeroShotComparisonTable } from "../../../components/ZeroShotComparisonTable";
 
 const postsDirectory = path.join(process.cwd(), "src/posts");
 
@@ -82,7 +83,8 @@ export default async function PostPage({ params }) {
                 JacobianTrajectory,
                 JSpaceEvolvingTrajectory,
                 TransformerDiagram,
-                JSpacePropertiesGrid
+                JSpacePropertiesGrid,
+                ZeroShotComparisonTable
               }}
             />
           </div>
