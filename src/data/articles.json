@@ -1,5 +1,12 @@
 [
   {
+    "slug": "system-one-models",
+    "title": "System One Models: What Jev and Laya can do that Claude can't",
+    "url": "https://www.maiatalksabout.ai/blog/system-one-models",
+    "description": "Jev and Laya answer typed questions with calibrated probabilities in a single pass. What System One models are, how they differ from LLMs, and what people have built with them so far.",
+    "tags": ["AI", "System One models", "Jev", "Laya", "TypeSafe AI", "classification", "open weights", "economics"]
+  },
+  {
     "slug": "attention-is-still-all-you-need",
     "title": "Attention Is Still All You Need",
     "url": "https://www.maiatalksabout.ai/blog/attention-is-still-all-you-need",
