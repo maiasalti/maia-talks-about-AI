@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkMath from "remark-math";
+import remarkGfm from "remark-gfm";
 import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css";
 import { ValenceComparisonChart, AudioFeaturesRadar, SeasonalTrendLine } from "../../../components/SeasonalMusicChart";
@@ -27,6 +28,8 @@ import { JSpaceEvolvingTrajectory } from "../../../components/JSpaceEvolvingTraj
 import { TransformerDiagram } from "../../../components/TransformerDiagram";
 import { JSpacePropertiesGrid } from "../../../components/JSpacePropertiesGrid";
 import { ZeroShotComparisonTable } from "../../../components/ZeroShotComparisonTable";
+import { Dropdown } from "../../../components/Dropdown";
+import { Term } from "../../../components/Term";
 
 const postsDirectory = path.join(process.cwd(), "src/posts");
 
@@ -49,7 +52,7 @@ export default async function PostPage({ params }) {
               source={content}
               options={{
                 mdxOptions: {
-                  remarkPlugins: [remarkMath],
+                  remarkPlugins: [remarkMath, [remarkGfm, { singleTilde: false }]],
                   rehypePlugins: [rehypeKatex],
                 },
               }}
@@ -84,7 +87,9 @@ export default async function PostPage({ params }) {
                 JSpaceEvolvingTrajectory,
                 TransformerDiagram,
                 JSpacePropertiesGrid,
-                ZeroShotComparisonTable
+                ZeroShotComparisonTable,
+                Dropdown,
+                Term
               }}
             />
           </div>

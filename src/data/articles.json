@@ -1,5 +1,12 @@
 [
   {
+    "slug": "business-in-one-day",
+    "title": "How I Built an Agent-Run Business in One Day",
+    "url": "https://www.maiatalksabout.ai/blog/business-in-one-day",
+    "description": "Rome wasn't built in a day. Well, Hallucitees was. A fun story + full methodology",
+    "tags": ["AI", "AI agents", "entrepreneurship", "Shopify", "print on demand", "Hallucitees", "automation"]
+  },
+  {
     "slug": "system-one-models",
     "title": "System One Models: What Jev and Laya can do that Claude can't",
     "url": "https://www.maiatalksabout.ai/blog/system-one-models",

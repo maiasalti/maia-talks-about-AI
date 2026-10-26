@@ -79,3 +79,119 @@ p + ul {
   color: #1d4ed8 !important;
   text-decoration: underline !important;
 }
+
+/* Markdown tables (remark-gfm). display:block + overflow lets wide tables
+   scroll sideways on phones instead of pushing the page wider. */
+.prose > div > table,
+.dropdown-body table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  color: black;
+  font-size: 1rem;
+}
+.prose > div > table th,
+.prose > div > table td,
+.dropdown-body th,
+.dropdown-body td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 0.5rem 1rem 0.5rem 0;
+  text-align: left;
+  vertical-align: top;
+}
+.prose > div > table th,
+.dropdown-body th {
+  font-weight: 700;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.6);
+}
+
+/* Content inside <Dropdown> (components/Dropdown.js), mirroring the post styles above. */
+.dropdown-body > * + * {
+  margin-top: 1rem;
+}
+.dropdown-body h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2rem;
+}
+.dropdown-body h2:first-child {
+  margin-top: 0.5rem;
+}
+.dropdown-body ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+}
+.dropdown-body ol {
+  list-style-type: decimal;
+  margin-left: 1.5rem;
+}
+.dropdown-body li {
+  margin-bottom: 0.5rem;
+}
+.dropdown-body a {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+/* Screenshots in posts. Inline style={{}} is stripped by next-mdx-remote's
+   blockJS, so posts use these classes instead. */
+.post-screenshot {
+  width: 100%;
+  max-width: 560px;
+}
+/* Two screenshots side by side. Column widths are each image's width/height
+   ratio so both end up the same height; override grid-template-columns per pair. */
+.post-image-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  max-width: 866px;
+}
+.post-image-pair img {
+  width: 100%;
+}
+.post-image-pair.x-and-instagram {
+  grid-template-columns: 0.852fr 0.585fr;
+}
+
+/* Inline glossary term (components/Term.js): dotted underline + tooltip. */
+.term {
+  position: relative;
+  text-decoration: underline dotted;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  cursor: help;
+}
+.term:focus {
+  outline: none;
+}
+.term:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.term-tip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: min(280px, 80vw);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background: black;
+  color: white !important;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  text-decoration: none;
+  white-space: normal;
+  z-index: 20;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+}
+.term-tip-open {
+  visibility: visible;
+  opacity: 1;
+}
